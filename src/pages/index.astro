@@ -1,16 +1,17 @@
 ---
 // src/pages/index.astro
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import Hero from '../components/Hero.astro';
-import SpeciesCard from '../components/SpeciesCard.astro';
 import Endorsement from '../components/Endorsement.astro';
 import AuthorCard from '../components/AuthorCard.astro';
 import AcknowledgmentOfCountry from '../components/AcknowledgmentOfCountry.astro';
 import BuyButton from '../components/BuyButton.astro';
 
-const allSpecies = await getCollection('species');
-const featuredSpecies = allSpecies.filter(s => s.data.featured);
+import melbourneCover from '../assets/book-images/melbourne-cover.jpg';
+import baxteri from '../assets/book-images/baxteri-page.jpg';
+import shiningGum from '../assets/book-images/interior-shining-gum.jpg';
+import plunkettMallee from '../assets/book-images/interior-plunkett-mallee.jpg';
 
 const allEndorsements = await getCollection('endorsements');
 const featuredEndorsements = allEndorsements.filter(e => e.data.featured);
@@ -25,81 +26,55 @@ const bookSchema = {
   ],
   isbn: '9780645232615',
   publisher: { '@type': 'Organization', name: 'ACE Publishing' },
-  description: 'An identification guide to Melbourne\'s 33 indigenous eucalypt species.',
-  image: '/images/book/cover-placeholder.svg',
+  description: 'A field guide to Melbourne\'s 36 eucalypt species, identified through bark texture and fruit characteristics.',
 };
 ---
 
 <Base
-  title="ACE Guide to Eucalypts Melbourne — Identify Melbourne's Indigenous Eucalypts"
-  description="An identification guide to Melbourne's 33 indigenous eucalypt species. Learn to recognise the stringybarks, gums, boxes, peppermints, and ironbarks of your local bushland."
+  title="ACE Guide to Eucalypts Melbourne — A Field Guide to Melbourne's Eucalypts"
+  description="A field guide to Melbourne's 36 eucalypt species. Identified through bark and fruit, photographed in intimate detail. By Vicky Shukuroglou and Rod Fensham."
   schemaJson={bookSchema}
 >
-  <!-- Hero -->
-  <Hero
-    imageSrc="/images/book/cover-placeholder.svg"
-    imageAlt="Eucalypt canopy viewed from below, sunlight filtering through leaves"
-    title="ACE Guide to Eucalypts Melbourne"
-    subtitle="An identification guide to Melbourne's 33 indigenous eucalypt species"
-    ctaText="Get the Book"
-    ctaHref="/buy/"
-  />
-
-  <!-- Problem / Promise -->
-  <section class="section">
-    <div class="content-width">
-      <!-- PLACEHOLDER: Replace with final copy -->
-      <p class="promise-text">
-        Most Melburnians walk past eucalypts every day without knowing what they are.
-        These 33 species have shaped this landscape for millennia — and this guide helps
-        you see them clearly for the first time. Using a simple bark-and-leaf method,
-        you'll learn to tell a Messmate from a Manna Gum, a Red Box from a Red Ironbark.
-      </p>
-    </div>
-  </section>
-
-  <!-- Species Teaser Strip -->
-  <section class="section" aria-label="Featured species">
-    <div class="wide-width">
-      <h2 class="content-width">A taste of what's inside</h2>
-      <div class="teaser-strip">
-        {featuredSpecies.slice(0, 4).map(entry => (
-          <SpeciesCard
-            commonName={entry.data.common_name}
-            scientificName={entry.data.scientific_name}
-            group={entry.data.group}
-            imageSrc={entry.data.hero_image.src}
-            imageAlt={`${entry.data.common_name} — ${entry.data.group}`}
-            href={`/species/${entry.id}/`}
-          />
-        ))}
+  <!-- Hero: Book cover -->
+  <section class="hero">
+    <div class="hero-inner content-width">
+      <div class="hero-cover">
+        <Image src={melbourneCover} alt="Cover of the ACE Guide to Eucalypts Melbourne — eucalypt bark peeling in layers of grey, white, and rust" width={400} loading="eager" fetchpriority="high" />
       </div>
-      <p class="content-width teaser-more">
-        <a href="/species/">See all published species</a>
-      </p>
+      <div class="hero-text">
+        <h1>ACE Guide to Eucalypts Melbourne</h1>
+        <p class="hero-subtitle">A field guide to Melbourne's 36 eucalypt species, identified through bark and fruit, photographed in intimate detail.</p>
+        <BuyButton text="Get the Book" />
+      </div>
     </div>
   </section>
 
-  <!-- About the Book (brief) -->
-  <section class="section">
-    <div class="content-width">
-      <h2>About the Guide</h2>
-      <!-- PLACEHOLDER: Replace with final copy -->
-      <p>
-        The ACE Guide to Eucalypts Melbourne uses a bark-and-leaf identification method
-        to help you distinguish all 33 indigenous eucalypt species found across the Melbourne
-        region. Compact enough for your pocket, detailed enough for confident identification.
-        Part of the ACE field guide series alongside guides to Brisbane and Tasmania.
-      </p>
-      <BuyButton text="Find the Book" />
+  <!-- Interior showcase: pages from the guide -->
+  <section class="section showcase" aria-label="Pages from the guide">
+    <div class="wide-width">
+      <h2 class="content-width">Every page is a work of art</h2>
+      <div class="showcase-grid">
+        <figure>
+          <Image src={baxteri} alt="Species page for Brown Stringybark (Eucalyptus baxteri) showing leaves, buds, fruit, and bark detail on a dark background" width={400} loading="lazy" />
+          <figcaption>Brown Stringybark (<em>E. baxteri</em>)</figcaption>
+        </figure>
+        <figure>
+          <Image src={shiningGum} alt="Species page for Shining Gum (Eucalyptus nitens) showing leaves, buds, and bark on a dark background" width={400} loading="lazy" />
+          <figcaption>Shining Gum (<em>E. nitens</em>)</figcaption>
+        </figure>
+        <figure>
+          <Image src={plunkettMallee} alt="Species page for Plunkett Mallee (Eucalyptus curtisii) showing leaves, buds, fruit, and bark on a dark background" width={400} loading="lazy" />
+          <figcaption>Plunkett Mallee (<em>E. curtisii</em>)</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
-  <!-- Endorsements -->
+  <!-- Endorsement -->
   {featuredEndorsements.length > 0 && (
     <section class="section" aria-label="Endorsements">
       <div class="content-width">
-        {featuredEndorsements.map(e => (
+        {featuredEndorsements.slice(0, 1).map(e => (
           <Endorsement
             quote={e.data.quote}
             name={e.data.name}
@@ -138,21 +113,71 @@ const bookSchema = {
 </Base>
 
 <style>
-  .promise-text {
-    font-size: 1.25rem;
-    max-width: var(--content-width);
-    line-height: 1.8;
+  .hero {
+    padding-block: var(--space-lg);
   }
 
-  .teaser-strip {
+  .hero-inner {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: var(--space-sm);
-    margin-top: var(--space-sm);
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-lg);
+    align-items: center;
   }
 
-  .teaser-more {
-    margin-top: var(--space-sm);
+  @media (max-width: 640px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-cover {
+      max-width: 240px;
+      margin-inline: auto;
+    }
+  }
+
+  .hero-cover img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px rgba(44, 44, 42, 0.15);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-block: var(--space-sm);
+  }
+
+  .showcase {
+    background-color: #1a1a18;
+    padding-block: var(--space-lg);
+  }
+
+  .showcase h2 {
+    color: var(--color-bg);
+    margin-bottom: var(--space-md);
+  }
+
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .showcase figure {
+    margin: 0;
+  }
+
+  .showcase figure img {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .showcase figcaption {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    margin-top: var(--space-xs);
   }
 
   .author-grid {

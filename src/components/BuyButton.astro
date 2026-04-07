@@ -7,7 +7,7 @@ interface Props {
   external?: boolean;
 }
 
-const { text = 'Get the Guide', href = '/buy/', external = false } = Astro.props;
+const { text = 'Get the Guide', href = '/buy/', external = href !== '/buy/' } = Astro.props;
 ---
 
 <a

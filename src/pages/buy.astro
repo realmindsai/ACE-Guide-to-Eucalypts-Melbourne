@@ -1,9 +1,14 @@
 ---
 // src/pages/buy.astro
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import BuyButton from '../components/BuyButton.astro';
 
+import melbourneCover from '../assets/book-images/melbourne-cover.jpg';
+
 const breadcrumbs = [{ name: 'Buy', href: '/buy/' }];
+
+const stripePaymentLink = 'https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01';
 
 const bookSchema = {
   '@context': 'https://schema.org',
@@ -15,31 +20,26 @@ const bookSchema = {
   ],
   isbn: '9780645232615',
   publisher: { '@type': 'Organization', name: 'ACE Publishing' },
-  description: 'Identification guide to the eucalypts of Melbourne. Covers 33 indigenous species.',
-  image: '/images/book/cover-placeholder.svg',
+  description: 'A field guide to Melbourne\'s 36 eucalypt species, identified through bark texture and fruit characteristics.',
   offers: {
-    '@type': 'AggregateOffer',
+    '@type': 'Offer',
     availability: 'https://schema.org/InStock',
     priceCurrency: 'AUD',
-    lowPrice: '30',
-    offerCount: 2,
+    price: '30',
+    url: stripePaymentLink,
   },
 };
 
-// PLACEHOLDER: Replace with real Stripe Payment Link when created
-const stripePaymentLink = '#stripe-payment-link-placeholder';
-
 const otherRetailers = [
+  { name: 'Australian Koala Foundation', href: 'https://savethekoala.com/shop/products/book-ace-guide-to-eucalypts/' },
   { name: 'Booktopia', href: '#' },
   { name: 'Dymocks', href: '#' },
-  { name: 'Amazon AU', href: '#' },
-  { name: 'Fishpond', href: '#' },
 ];
 ---
 
 <Base
   title="Buy the ACE Guide to Eucalypts Melbourne"
-  description="Purchase the ACE Guide to Eucalypts Melbourne — $30 + postage. Available via Stripe checkout or your favourite retailer."
+  description="Purchase the ACE Guide to Eucalypts Melbourne — $30 + postage. Secure Stripe checkout."
   schemaJson={bookSchema}
   breadcrumbs={breadcrumbs}
 >
@@ -47,11 +47,10 @@ const otherRetailers = [
     <div class="content-width">
       <div class="buy-grid">
         <div class="buy-cover">
-          <img
-            src="/images/book/cover-placeholder.svg"
-            alt="Cover of the ACE Guide to Eucalypts Melbourne"
-            width="400"
-            height="600"
+          <Image
+            src={melbourneCover}
+            alt="Cover of the ACE Guide to Eucalypts Melbourne — eucalypt bark peeling in layers of grey, white, and rust"
+            width={400}
             loading="eager"
           />
         </div>
@@ -59,7 +58,7 @@ const otherRetailers = [
         <div class="buy-details">
           <h1>ACE Guide to Eucalypts Melbourne</h1>
           <p class="buy-subtitle">
-            An identification guide to Melbourne's 33 indigenous eucalypt species
+            A field guide to Melbourne's 36 eucalypt species
           </p>
 
           <dl class="book-facts">
@@ -75,14 +74,12 @@ const otherRetailers = [
             <dt>Price</dt>
             <dd>$30 AUD + $6 postage (Australia)</dd>
 
-            <!-- PLACEHOLDER: Add page count, dimensions, format when available -->
             <dt>Format</dt>
             <dd>Softcover pocket guide</dd>
           </dl>
 
           <!-- Primary CTA: Stripe Payment Link -->
           <div class="buy-primary">
-            <!-- PLACEHOLDER: Replace href with actual Stripe Payment Link -->
             <BuyButton
               text="Buy Now — $36 AUD (inc. postage)"
               href={stripePaymentLink}

@@ -1,41 +1,40 @@
 ---
 // src/pages/about.astro
 import Page from '../layouts/Page.astro';
+import BuyButton from '../components/BuyButton.astro';
 
 const breadcrumbs = [{ name: 'About', href: '/about/' }];
 ---
 
 <Page
   title="About the ACE Guide to Eucalypts Melbourne"
-  description="How the ACE Guide to Eucalypts Melbourne was created, the bark-and-leaf identification method, and the Dahl Fellowship that made it possible."
+  description="A field guide to Melbourne's 36 eucalypt species. Bark texture, fruit characteristics, and intimate photography help you identify the eucalypts around you."
   breadcrumbs={breadcrumbs}
 >
   <h1>About the Guide</h1>
 
-  <h2>The ACE Identification Method</h2>
-  <!-- PLACEHOLDER: Replace with detailed method description -->
+  <!-- PLACEHOLDER: Replace with final copy -->
   <p>
-    The ACE method combines bark texture and leaf colour to group eucalypts into
-    identifiable categories. By looking first at whether bark is rough or smooth, then
-    at whether leaves are the same colour on both sides (concolorous) or different
-    (discolorous), you can narrow down any Melbourne eucalypt to a small group of
-    possibilities.
+    The ACE Guide to Eucalypts Melbourne covers 36 eucalypt species found across
+    the greater Melbourne region — 32 indigenous and 4 introduced. Each species
+    entry includes high-resolution photography of bark, leaves, buds, and fruit,
+    along with identification notes, habitat information, and where to find each
+    species in Melbourne's parks and reserves.
   </p>
 
-  <h2>What's Inside</h2>
-  <!-- PLACEHOLDER: Replace with real book details -->
   <p>
-    The guide covers all 33 indigenous eucalypt species found in the greater Melbourne
-    region. Each species entry includes high-resolution photography of bark, leaves, buds,
-    and fruit, along with identification notes, habitat information, and where to find
-    each species in Melbourne's parks and reserves.
+    The guide walks you through identification using bark texture and fruit
+    characteristics — a practical method that works in the field with what you
+    can see and touch.
   </p>
+
+  <h2>Who It's For</h2>
   <p>
-    Additional resources include an introduction to eucalypts and Melbourne's local
-    environments, Aboriginal uses of eucalypt species, municipal area species lists
-    with maps, and a systematic identification guide.
+    Bushwalkers who want to know the trees they're walking among. Gardeners
+    choosing indigenous species for their yard. Field naturalists. Anyone who
+    wants to give a beautiful, meaningful gift to someone who loves Melbourne's
+    bushland.
   </p>
-  <!-- PLACEHOLDER: Add sample interior spread photograph -->
 
   <h2>The Dahl Fellowship</h2>
   <!-- PLACEHOLDER: Replace with real Eucalypt Australia story -->
@@ -45,11 +44,20 @@ const breadcrumbs = [{ name: 'About', href: '/about/' }];
     supporting research and education about Australia's iconic eucalypt heritage.
   </p>
 
-  <h2>The ACE Series</h2>
-  <p>
-    The ACE Guide to Eucalypts Melbourne joins a growing series of accessible eucalypt
-    identification guides, including the
-    <em>ACE Guide to Eucalypts: Brisbane</em> by Rod Fensham and
-    <em>EucaFlip: Tasmania</em> by Rob Wiltshire and Brad Potts.
-  </p>
+  <div class="about-cta">
+    <BuyButton text="Get the Guide" />
+  </div>
 </Page>
+
+<style>
+  h2 {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .about-cta {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-olive);
+  }
+</style>
