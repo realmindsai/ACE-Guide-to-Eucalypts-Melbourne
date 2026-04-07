@@ -1,0 +1,85 @@
+---
+// src/components/Nav.astro
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/species/', label: 'Species' },
+  { href: '/identify/', label: 'Identify' },
+  { href: '/about/', label: 'About' },
+  { href: '/authors/', label: 'Authors' },
+  { href: '/buy/', label: 'Buy' },
+];
+
+const currentPath = Astro.url.pathname;
+
+function isActive(linkHref: string, current: string): boolean {
+  if (linkHref === '/') return current === '/';
+  return current === linkHref || current.startsWith(linkHref);
+}
+---
+
+<nav aria-label="Main navigation">
+  <div class="nav-inner wide-width">
+    <a href="/" class="nav-logo" aria-label="ACE Guide to Eucalypts Melbourne — Home">
+      ACE Eucalypts Melbourne
+    </a>
+    <ul class="nav-links" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={isActive(link.href, currentPath) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  nav {
+    border-bottom: 1px solid var(--color-olive);
+    padding-block: var(--space-sm);
+  }
+
+  .nav-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm) var(--space-md);
+  }
+
+  .nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-sm);
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: var(--space-xs);
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-cta);
+  }
+
+  .nav-links a[aria-current='page'] {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+</style>
