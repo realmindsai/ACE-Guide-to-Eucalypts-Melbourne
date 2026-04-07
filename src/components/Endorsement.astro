@@ -1,0 +1,40 @@
+---
+// src/components/Endorsement.astro
+interface Props {
+  quote: string;
+  name: string;
+  credential: string;
+}
+
+const { quote, name, credential } = Astro.props;
+---
+
+<blockquote class="endorsement">
+  <p>{quote}</p>
+  <footer>
+    <cite>&mdash; {name}, {credential}</cite>
+  </footer>
+</blockquote>
+
+<style>
+  .endorsement {
+    border-left: 3px solid var(--color-olive);
+    padding-left: var(--space-sm);
+    margin-block: var(--space-md);
+  }
+
+  .endorsement p {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--color-text);
+  }
+
+  .endorsement cite {
+    display: block;
+    margin-top: var(--space-xs);
+    font-style: normal;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+</style>

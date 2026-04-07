@@ -1,0 +1,75 @@
+---
+// src/components/Hero.astro
+// Full-bleed hero image with overlaid title, subtitle, and optional CTA.
+import BuyButton from './BuyButton.astro';
+
+interface Props {
+  imageSrc: string;
+  imageAlt: string;
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const { imageSrc, imageAlt, title, subtitle, ctaText, ctaHref } = Astro.props;
+---
+
+<section class="hero" aria-label="Page hero">
+  <div class="hero-image-wrap">
+    <img src={imageSrc} alt={imageAlt} loading="eager" fetchpriority="high" />
+  </div>
+  <div class="hero-content content-width">
+    <h1>{title}</h1>
+    {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+    {ctaText && ctaHref && <BuyButton text={ctaText} href={ctaHref} />}
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-image-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-lg);
+    background: linear-gradient(to top, rgba(44, 44, 42, 0.7), transparent);
+    width: 100%;
+    max-width: none;
+    padding-inline: var(--space-md);
+  }
+
+  .hero h1 {
+    color: var(--color-bg);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .hero-subtitle {
+    color: var(--color-bg);
+    font-size: 1.25rem;
+    margin-top: var(--space-xs);
+    max-width: var(--content-width);
+  }
+
+  .hero :global(.buy-button) {
+    margin-top: var(--space-sm);
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+// src/components/BuyButton.astro
+// Terracotta CTA button. Used on every page.
+interface Props {
+  text?: string;
+  href?: string;
+  external?: boolean;
+}
+
+const { text = 'Get the Guide', href = '/buy/', external = false } = Astro.props;
+---
+
+<a
+  class="buy-button"
+  href={href}
+  {...(external ? { target: '_blank', rel: 'noopener' } : {})}
+>
+  {text}
+</a>
+
+<style>
+  .buy-button {
+    display: inline-block;
+    background-color: var(--color-cta);
+    color: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    min-height: 44px;
+    min-width: 44px;
+    transition: background-color 150ms ease;
+  }
+
+  .buy-button:hover {
+    background-color: var(--color-cta-hover);
+    color: var(--color-bg);
+  }
+</style>

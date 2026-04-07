@@ -1,0 +1,39 @@
+---
+// src/components/AcknowledgmentOfCountry.astro
+// Structural, prominent — not a footer afterthought. See spec Section 5.3.
+---
+
+<section class="acknowledgment-of-country section" aria-label="Acknowledgment of Country">
+  <div class="content-width">
+    <h2>Acknowledgment of Country</h2>
+    <!-- PLACEHOLDER: Replace with project-specific Acknowledgment of Country text
+         written for this project, naming Wurundjeri Woi-wurrung and Bunurong/Boon Wurrung
+         peoples specifically. Should be reviewed by relevant Traditional Owner groups. -->
+    <p>
+      The eucalypts in this guide grow on the lands of the Wurundjeri Woi-wurrung and
+      Bunurong/Boon Wurrung peoples of the Eastern Kulin Nation. These trees have been
+      known, named, and cared for by Aboriginal people for tens of thousands of years.
+      We pay our respects to Elders past, present, and emerging, and acknowledge that
+      sovereignty was never ceded.
+    </p>
+  </div>
+</section>
+
+<style>
+  .acknowledgment-of-country {
+    border-top: 1px solid var(--color-olive);
+    padding-block: var(--space-lg);
+  }
+
+  .acknowledgment-of-country h2 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+    color: var(--color-green);
+  }
+
+  .acknowledgment-of-country p {
+    max-width: var(--content-width);
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+  }
+</style>

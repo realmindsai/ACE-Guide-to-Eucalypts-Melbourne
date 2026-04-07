@@ -1,0 +1,51 @@
+---
+// src/components/AuthorCard.astro
+interface Props {
+  name: string;
+  role: string;
+  imageSrc: string;
+  imageAlt: string;
+  href: string;
+}
+
+const { name, role, imageSrc, imageAlt, href } = Astro.props;
+---
+
+<a class="author-card" href={href}>
+  <img src={imageSrc} alt={imageAlt} loading="lazy" width="150" height="150" />
+  <div>
+    <h3>{name}</h3>
+    <p>{role}</p>
+  </div>
+</a>
+
+<style>
+  .author-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .author-card:hover h3 {
+    color: var(--color-cta);
+  }
+
+  .author-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .author-card h3 {
+    font-size: 1.125rem;
+    transition: color 150ms ease;
+  }
+
+  .author-card p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+</style>
