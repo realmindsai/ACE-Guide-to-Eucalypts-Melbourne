@@ -1,16 +1,164 @@
 ---
-// src/pages/index.astro — temporary, will be replaced in Task 12
+// src/pages/index.astro
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import SpeciesCard from '../components/SpeciesCard.astro';
+import Endorsement from '../components/Endorsement.astro';
+import AuthorCard from '../components/AuthorCard.astro';
+import AcknowledgmentOfCountry from '../components/AcknowledgmentOfCountry.astro';
+import BuyButton from '../components/BuyButton.astro';
+
+const allSpecies = await getCollection('species');
+const featuredSpecies = allSpecies.filter(s => s.data.featured);
+
+const allEndorsements = await getCollection('endorsements');
+const featuredEndorsements = allEndorsements.filter(e => e.data.featured);
+
+const bookSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Book',
+  name: 'ACE Guide to Eucalypts Melbourne',
+  author: [
+    { '@type': 'Person', name: 'Vicky Shukuroglou' },
+    { '@type': 'Person', name: 'Roderick Fensham' },
+  ],
+  isbn: '9780645232615',
+  publisher: { '@type': 'Organization', name: 'ACE Publishing' },
+  description: 'An identification guide to Melbourne\'s 33 indigenous eucalypt species.',
+  image: '/images/book/cover-placeholder.svg',
+};
 ---
 
 <Base
   title="ACE Guide to Eucalypts Melbourne — Identify Melbourne's Indigenous Eucalypts"
-  description="An identification guide to Melbourne's 33 indigenous eucalypt species by Vicky Shukuroglou and Rod Fensham."
+  description="An identification guide to Melbourne's 33 indigenous eucalypt species. Learn to recognise the stringybarks, gums, boxes, peppermints, and ironbarks of your local bushland."
+  schemaJson={bookSchema}
 >
+  <!-- Hero -->
+  <Hero
+    imageSrc="/images/book/cover-placeholder.svg"
+    imageAlt="Eucalypt canopy viewed from below, sunlight filtering through leaves"
+    title="ACE Guide to Eucalypts Melbourne"
+    subtitle="An identification guide to Melbourne's 33 indigenous eucalypt species"
+    ctaText="Get the Book"
+    ctaHref="/buy/"
+  />
+
+  <!-- Problem / Promise -->
   <section class="section">
     <div class="content-width">
-      <h1>ACE Guide to Eucalypts Melbourne</h1>
-      <p>Site under construction. Layout and design system working.</p>
+      <!-- PLACEHOLDER: Replace with final copy -->
+      <p class="promise-text">
+        Most Melburnians walk past eucalypts every day without knowing what they are.
+        These 33 species have shaped this landscape for millennia — and this guide helps
+        you see them clearly for the first time. Using a simple bark-and-leaf method,
+        you'll learn to tell a Messmate from a Manna Gum, a Red Box from a Red Ironbark.
+      </p>
     </div>
   </section>
+
+  <!-- Species Teaser Strip -->
+  <section class="section" aria-label="Featured species">
+    <div class="wide-width">
+      <h2 class="content-width">A taste of what's inside</h2>
+      <div class="teaser-strip">
+        {featuredSpecies.slice(0, 4).map(entry => (
+          <SpeciesCard
+            commonName={entry.data.common_name}
+            scientificName={entry.data.scientific_name}
+            group={entry.data.group}
+            imageSrc={entry.data.hero_image.src}
+            imageAlt={`${entry.data.common_name} — ${entry.data.group}`}
+            href={`/species/${entry.id}/`}
+          />
+        ))}
+      </div>
+      <p class="content-width teaser-more">
+        <a href="/species/">See all published species</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- About the Book (brief) -->
+  <section class="section">
+    <div class="content-width">
+      <h2>About the Guide</h2>
+      <!-- PLACEHOLDER: Replace with final copy -->
+      <p>
+        The ACE Guide to Eucalypts Melbourne uses a bark-and-leaf identification method
+        to help you distinguish all 33 indigenous eucalypt species found across the Melbourne
+        region. Compact enough for your pocket, detailed enough for confident identification.
+        Part of the ACE field guide series alongside guides to Brisbane and Tasmania.
+      </p>
+      <BuyButton text="Find the Book" />
+    </div>
+  </section>
+
+  <!-- Endorsements -->
+  {featuredEndorsements.length > 0 && (
+    <section class="section" aria-label="Endorsements">
+      <div class="content-width">
+        {featuredEndorsements.map(e => (
+          <Endorsement
+            quote={e.data.quote}
+            name={e.data.name}
+            credential={e.data.credential}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Authors -->
+  <section class="section" aria-label="Authors">
+    <div class="content-width">
+      <h2>The Authors</h2>
+      <div class="author-grid">
+        <AuthorCard
+          name="Vicky Shukuroglou"
+          role="Author, photographer, artist"
+          imageSrc="/images/authors/vicky-placeholder.svg"
+          imageAlt="Portrait of Vicky Shukuroglou"
+          href="/authors/"
+        />
+        <AuthorCard
+          name="Rod Fensham"
+          role="Ecologist, University of Queensland"
+          imageSrc="/images/authors/rod-placeholder.svg"
+          imageAlt="Portrait of Rod Fensham"
+          href="/authors/"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Acknowledgment of Country -->
+  <AcknowledgmentOfCountry />
 </Base>
+
+<style>
+  .promise-text {
+    font-size: 1.25rem;
+    max-width: var(--content-width);
+    line-height: 1.8;
+  }
+
+  .teaser-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+  }
+
+  .teaser-more {
+    margin-top: var(--space-sm);
+  }
+
+  .author-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+</style>
