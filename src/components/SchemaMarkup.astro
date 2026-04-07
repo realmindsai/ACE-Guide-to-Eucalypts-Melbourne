@@ -1,0 +1,35 @@
+---
+// src/components/SchemaMarkup.astro
+// Generates JSON-LD for various Schema.org types.
+// Used by Base layout — pass the appropriate schema object per page.
+// This component exists as documentation and a factory for schema objects.
+
+// Usage examples in page files:
+//
+// Book schema (home/buy pages):
+// const bookSchema = {
+//   '@context': 'https://schema.org',
+//   '@type': 'Book',
+//   name: 'ACE Guide to Eucalypts Melbourne',
+//   author: [
+//     { '@type': 'Person', name: 'Vicky Shukuroglou' },
+//     { '@type': 'Person', name: 'Roderick Fensham' },
+//   ],
+//   isbn: '9780645232615',
+//   publisher: { '@type': 'Organization', name: 'ACE Publishing' },
+// };
+//
+// Article schema (species pages):
+// const articleSchema = {
+//   '@context': 'https://schema.org',
+//   '@type': 'Article',
+//   headline: 'Messmate Stringybark (Eucalyptus obliqua)',
+//   author: { '@type': 'Person', name: 'Vicky Shukuroglou' },
+//   datePublished: '2026-04-06',
+//   speakable: {
+//     '@type': 'SpeakableSpecification',
+//     cssSelector: ['.species-summary'],
+//   },
+// };
+---
+<!-- SchemaMarkup is a data-only component — no HTML output. See usage notes above. -->

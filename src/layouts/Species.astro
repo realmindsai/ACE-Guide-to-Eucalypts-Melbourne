@@ -1,0 +1,176 @@
+---
+// src/layouts/Species.astro
+import { Image } from 'astro:assets';
+import Base from './Base.astro';
+import IdentificationPanel from '../components/IdentificationPanel.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import BuyButton from '../components/BuyButton.astro';
+
+// Props type matches Astro 5+ content layer entry shape
+const { entry } = Astro.props;
+const { data } = entry;
+
+const title = `${data.common_name} (${data.scientific_name}) — ACE Guide to Eucalypts Melbourne`;
+const description = `How to identify ${data.common_name} (${data.scientific_name}) in Melbourne. Bark: ${data.bark_type.split('—')[0].trim()}. Found at ${data.locations.slice(0, 2).join(', ')}.`;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: `${data.common_name} (${data.scientific_name})`,
+  author: [
+    { '@type': 'Person', name: 'Vicky Shukuroglou' },
+    { '@type': 'Person', name: 'Roderick Fensham' },
+  ],
+  datePublished: '2026-04-06',
+  dateModified: data.last_reviewed || '2026-04-06',
+  about: {
+    '@type': 'Thing',
+    name: data.scientific_name,
+  },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['.species-summary'],
+  },
+  image: data.gallery.map(img => ({
+    '@type': 'ImageObject',
+    contentUrl: img.src.src,
+    description: img.alt,
+    caption: img.caption,
+    creator: { '@type': 'Person', name: 'Vicky Shukuroglou' },
+  })),
+};
+
+// In Astro 5+ glob loader, entry.id = folder name (e.g., "messmate-stringybark")
+const breadcrumbs = [
+  { name: 'Species', href: '/species/' },
+  { name: data.common_name, href: `/species/${entry.id}/` },
+];
+
+// Resolve gallery images for the PhotoGallery component (which expects string src)
+const galleryImages = data.gallery.map(img => ({
+  src: img.src.src,
+  alt: img.alt,
+  caption: img.caption,
+}));
+---
+
+<Base
+  title={title}
+  description={description}
+  schemaJson={articleSchema}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="species-page">
+    <!-- Hero — uses Astro Image component for optimised output -->
+    <div class="species-hero">
+      <Image src={data.hero_image} alt={`${data.common_name} in its natural habitat`} loading="eager" fetchpriority="high" widths={[600, 900, 1200]} />
+    </div>
+
+    <div class="content-width">
+      <!-- Title -->
+      <header class="species-header">
+        <h1>{data.common_name}</h1>
+        <p class="scientific-name">{data.scientific_name}</p>
+        {data.last_reviewed && (
+          <p class="last-reviewed">Last reviewed: {data.last_reviewed}</p>
+        )}
+      </header>
+
+      <!-- Summary — used by speakable schema -->
+      <div class="species-summary">
+        <slot />
+      </div>
+
+      <!-- Identification Panel -->
+      <IdentificationPanel
+        barkType={data.bark_type}
+        leafDescription={data.leaf_description}
+        budFruitDescription={data.bud_fruit_description}
+        heightRange={data.height_range}
+        floweringSeason={data.flowering_season}
+        locations={data.locations}
+      />
+
+      <!-- Aboriginal knowledge (only if permission granted) -->
+      {data.aboriginal_name && data.aboriginal_language && (
+        <section class="aboriginal-knowledge" aria-label="Aboriginal knowledge">
+          <h2>Aboriginal Knowledge</h2>
+          <p>
+            Known as <strong>{data.aboriginal_name}</strong> in {data.aboriginal_language} language.
+          </p>
+          {data.aboriginal_attribution && (
+            <p class="attribution">Shared with permission by {data.aboriginal_attribution}.</p>
+          )}
+        </section>
+      )}
+
+      <!-- Photo Gallery -->
+      <PhotoGallery images={galleryImages} />
+
+      <!-- CTA -->
+      <section class="species-cta section">
+        <p>This is one of 33 indigenous eucalypt species in Melbourne. The ACE Guide covers them all.</p>
+        <BuyButton text="Get the Guide" />
+      </section>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .species-hero img {
+    width: 100%;
+    max-height: 50vh;
+    object-fit: cover;
+  }
+
+  .species-header {
+    padding-top: var(--space-lg);
+  }
+
+  .species-header h1 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .last-reviewed {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-xs);
+  }
+
+  .species-summary {
+    margin-top: var(--space-md);
+  }
+
+  .species-summary :global(p) {
+    margin-bottom: var(--space-sm);
+  }
+
+  .aboriginal-knowledge {
+    margin-block: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border-left: 3px solid var(--color-green);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .aboriginal-knowledge h2 {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-xs);
+    color: var(--color-green);
+  }
+
+  .aboriginal-knowledge .attribution {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-xs);
+  }
+
+  .species-cta {
+    text-align: center;
+    border-top: 1px solid var(--color-olive);
+  }
+
+  .species-cta p {
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-secondary);
+  }
+</style>

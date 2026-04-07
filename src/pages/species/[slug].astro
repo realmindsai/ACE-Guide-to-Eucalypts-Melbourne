@@ -1,0 +1,21 @@
+---
+// src/pages/species/[slug].astro
+// Single-segment dynamic route — species IDs are flat folder names
+import { getCollection, render } from 'astro:content';
+import Species from '../../layouts/Species.astro';
+
+export async function getStaticPaths() {
+  const speciesEntries = await getCollection('species');
+  return speciesEntries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Species entry={entry}>
+  <Content />
+</Species>
