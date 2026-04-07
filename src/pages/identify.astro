@@ -1,0 +1,133 @@
+---
+// src/pages/identify.astro
+import Page from '../layouts/Page.astro';
+import BuyButton from '../components/BuyButton.astro';
+
+const breadcrumbs = [{ name: 'Identify', href: '/identify/' }];
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Identify Eucalypts in Melbourne',
+  description: 'Learn the bark-and-leaf method to identify Melbourne\'s 33 indigenous eucalypt species.',
+  step: [
+    {
+      '@type': 'HowToStep',
+      name: 'Look at the bark',
+      text: 'Is the bark rough (stringybark, box, ironbark) or smooth (gum)? Does rough bark persist to the small branches or stop partway up?',
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Look at the leaves',
+      text: 'Are the leaves the same colour on both sides (concolorous) or different — darker above, paler below (discolorous)?',
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Check buds and fruit',
+      text: 'Count buds per cluster. Look at the shape of the gum nut cap and the size of the fruit.',
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Consider habitat and location',
+      text: 'Where are you? Wet gullies, dry ridgetops, and river flats each favour different species.',
+    },
+  ],
+};
+---
+
+<Page
+  title="How to Identify Eucalypts in Melbourne — ACE Guide"
+  description="Learn the bark-and-leaf method to identify Melbourne's indigenous eucalypts. Free identification tips from the ACE Guide."
+  schemaJson={howToSchema}
+  breadcrumbs={breadcrumbs}
+>
+  <h1>How to Identify Eucalypts in Melbourne</h1>
+
+  <!-- PLACEHOLDER: Replace with real identification content and photo examples -->
+
+  <p>
+    Melbourne is home to 33 indigenous eucalypt species. That sounds like a lot, but with a
+    systematic approach you can learn to tell them apart. The ACE method starts with two
+    questions: <strong>what does the bark look like?</strong> and <strong>are the leaves
+    the same colour on both sides?</strong>
+  </p>
+
+  <h2>Step 1: Look at the Bark</h2>
+  <p>
+    Bark is the single most useful feature for eucalypt identification. Melbourne's eucalypts
+    fall into clear bark groups:
+  </p>
+  <ul>
+    <li><strong>Stringybarks</strong> — rough, fibrous bark that peels in long strips</li>
+    <li><strong>Boxes</strong> — rough, short-fibred bark that doesn't peel easily</li>
+    <li><strong>Ironbarks</strong> — deeply furrowed, very hard, dark bark</li>
+    <li><strong>Gums</strong> — smooth bark, often shedding in patches to reveal fresh colours</li>
+    <li><strong>Peppermints</strong> — rough bark at the base transitioning to smooth above</li>
+  </ul>
+
+  <h2>Step 2: Look at the Leaves</h2>
+  <p>
+    Pick a mature leaf from an adult branch (not the juvenile growth near the base).
+    Hold it up to the light. Is the upper surface noticeably darker than the lower?
+    If so, the leaf is <em>discolorous</em>. If both sides are similar, it's <em>concolorous</em>.
+    This one distinction eliminates half the possibilities.
+  </p>
+
+  <h2>Step 3: Check Buds and Fruit</h2>
+  <p>
+    Count the buds per cluster — this narrows identification further. The shape of the
+    gum nut (technically the fruit) and the cap that covers the stamens before flowering
+    are diagnostic features for many species.
+  </p>
+
+  <h2>Step 4: Consider Where You Are</h2>
+  <p>
+    Habitat matters. Some species prefer wet gullies, others dry ridgetops, others river
+    flats. Knowing your location within Melbourne narrows the possibilities significantly.
+  </p>
+
+  <h2>Common Confusions</h2>
+  <!-- PLACEHOLDER: Replace with real confusion pairs and resolution tips -->
+  <p>
+    Messmate Stringybark and Brown Stringybark can look similar from a distance. The key
+    difference is where the rough bark stops: Messmate has rough bark right out to the small
+    branches, while Brown Stringybark transitions to smooth bark in the upper trunk.
+  </p>
+
+  <section class="identify-cta">
+    <h2>Ready to Identify All 33?</h2>
+    <p>
+      These tips give you the method. The ACE Guide gives you every species — with
+      photography, detailed identification notes, and habitat maps.
+    </p>
+    <BuyButton text="Get the Guide" />
+  </section>
+</Page>
+
+<style>
+  ul {
+    margin-block: var(--space-sm);
+    padding-left: var(--space-md);
+  }
+
+  li {
+    margin-bottom: var(--space-xs);
+  }
+
+  h2 {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .identify-cta {
+    text-align: center;
+    padding-top: var(--space-lg);
+    margin-top: var(--space-lg);
+    border-top: 1px solid var(--color-olive);
+  }
+
+  .identify-cta p {
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-secondary);
+  }
+</style>

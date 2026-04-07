@@ -1,0 +1,221 @@
+---
+// src/pages/buy.astro
+import Base from '../layouts/Base.astro';
+import BuyButton from '../components/BuyButton.astro';
+
+const breadcrumbs = [{ name: 'Buy', href: '/buy/' }];
+
+const bookSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Book',
+  name: 'ACE Guide to Eucalypts Melbourne',
+  author: [
+    { '@type': 'Person', name: 'Vicky Shukuroglou' },
+    { '@type': 'Person', name: 'Roderick Fensham' },
+  ],
+  isbn: '9780645232615',
+  publisher: { '@type': 'Organization', name: 'ACE Publishing' },
+  description: 'Identification guide to the eucalypts of Melbourne. Covers 33 indigenous species.',
+  image: '/images/book/cover-placeholder.svg',
+  offers: {
+    '@type': 'AggregateOffer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'AUD',
+    lowPrice: '30',
+    offerCount: 2,
+  },
+};
+
+// PLACEHOLDER: Replace with real Stripe Payment Link when created
+const stripePaymentLink = '#stripe-payment-link-placeholder';
+
+const otherRetailers = [
+  { name: 'Booktopia', href: '#' },
+  { name: 'Dymocks', href: '#' },
+  { name: 'Amazon AU', href: '#' },
+  { name: 'Fishpond', href: '#' },
+];
+---
+
+<Base
+  title="Buy the ACE Guide to Eucalypts Melbourne"
+  description="Purchase the ACE Guide to Eucalypts Melbourne — $30 + postage. Available via Stripe checkout or your favourite retailer."
+  schemaJson={bookSchema}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="buy-page section">
+    <div class="content-width">
+      <div class="buy-grid">
+        <div class="buy-cover">
+          <img
+            src="/images/book/cover-placeholder.svg"
+            alt="Cover of the ACE Guide to Eucalypts Melbourne"
+            width="400"
+            height="600"
+            loading="eager"
+          />
+        </div>
+
+        <div class="buy-details">
+          <h1>ACE Guide to Eucalypts Melbourne</h1>
+          <p class="buy-subtitle">
+            An identification guide to Melbourne's 33 indigenous eucalypt species
+          </p>
+
+          <dl class="book-facts">
+            <dt>Authors</dt>
+            <dd>Vicky Shukuroglou &amp; Roderick Fensham</dd>
+
+            <dt>Publisher</dt>
+            <dd>ACE Publishing</dd>
+
+            <dt>ISBN</dt>
+            <dd>9780645232615</dd>
+
+            <dt>Price</dt>
+            <dd>$30 AUD + $6 postage (Australia)</dd>
+
+            <!-- PLACEHOLDER: Add page count, dimensions, format when available -->
+            <dt>Format</dt>
+            <dd>Softcover pocket guide</dd>
+          </dl>
+
+          <!-- Primary CTA: Stripe Payment Link -->
+          <div class="buy-primary">
+            <!-- PLACEHOLDER: Replace href with actual Stripe Payment Link -->
+            <BuyButton
+              text="Buy Now — $36 AUD (inc. postage)"
+              href={stripePaymentLink}
+              external={true}
+            />
+            <p class="buy-secure">Secure checkout via Stripe. No account needed.</p>
+          </div>
+
+          <!-- Secondary: Other retailers -->
+          <div class="buy-secondary">
+            <h2>Also available from</h2>
+            <div class="retailer-buttons">
+              {otherRetailers.map(r => (
+                <BuyButton
+                  text={r.name}
+                  href={r.href}
+                  external={true}
+                />
+              ))}
+            </div>
+          </div>
+
+          <p class="buy-indie">
+            Or ask your local bookshop — they can order it by ISBN.
+          </p>
+
+          <p class="buy-contact">
+            Wholesale or bulk orders? Email <a href="mailto:aceguidetoeucalypts@gmail.com">aceguidetoeucalypts@gmail.com</a>.
+          </p>
+
+          <p class="buy-gift">
+            Know someone who walks in Melbourne's bushland? This makes a meaningful gift.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .buy-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .buy-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .buy-cover {
+      max-width: 300px;
+      margin-inline: auto;
+    }
+  }
+
+  .buy-cover img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(44, 44, 42, 0.1);
+  }
+
+  .buy-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+  }
+
+  .book-facts {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-xs) var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .book-facts dt {
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .buy-primary {
+    margin-bottom: var(--space-md);
+  }
+
+  .buy-secure {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-xs);
+  }
+
+  .buy-secondary {
+    margin-bottom: var(--space-md);
+  }
+
+  .buy-secondary h2 {
+    font-size: 1rem;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-secondary);
+  }
+
+  .retailer-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .retailer-buttons :global(.buy-button) {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-text-secondary);
+  }
+
+  .retailer-buttons :global(.buy-button:hover) {
+    background-color: var(--color-text);
+  }
+
+  .buy-indie {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+
+  .buy-contact {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-xs);
+  }
+
+  .buy-gift {
+    margin-top: var(--space-sm);
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+</style>

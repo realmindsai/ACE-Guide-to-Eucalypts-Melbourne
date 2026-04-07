@@ -1,0 +1,126 @@
+---
+// src/pages/authors.astro
+import Page from '../layouts/Page.astro';
+
+const breadcrumbs = [{ name: 'Authors', href: '/authors/' }];
+
+const personSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Vicky Shukuroglou',
+    jobTitle: 'Author, Photographer, Artist',
+    url: 'https://www.shukuroglou.org',
+    sameAs: [
+      'https://au.linkedin.com/in/vicky-shukuroglou-1b61a969',
+      'https://www.bundanon.com.au/artist/vicky-shukuroglou/',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Roderick Fensham',
+    jobTitle: 'Ecologist',
+    affiliation: { '@type': 'Organization', name: 'University of Queensland' },
+    url: 'https://environment.uq.edu.au/profile/21635/rod-fensham',
+  },
+];
+---
+
+<Page
+  title="Authors — ACE Guide to Eucalypts Melbourne"
+  description="Meet the authors: Vicky Shukuroglou (artist, photographer, educator) and Rod Fensham (ecologist, University of Queensland)."
+  schemaJson={personSchemas}
+  breadcrumbs={breadcrumbs}
+>
+  <h1>The Authors</h1>
+  <p class="authors-intro">
+    The ACE Guide to Eucalypts Melbourne is a collaboration between an artist-photographer
+    and an ecologist — bringing together intimate observation and rigorous science.
+  </p>
+
+  <section class="author-bio">
+    <img src="/images/authors/vicky-placeholder.svg" alt="Portrait of Vicky Shukuroglou" width="200" height="200" />
+    <div>
+      <h2>Vicky Shukuroglou</h2>
+      <p class="author-role">Author, Photographer, Artist &amp; Educator</p>
+      <!-- PLACEHOLDER: Replace with Vicky's real bio -->
+      <p>
+        Vicky Shukuroglou is a multidisciplinary artist, photographer, and educator whose
+        work explores intimate connections with the natural world. She co-authored
+        <em>Loving Country: A Guide to Sacred Australia</em> with Bruce Pascoe (Hardie Grant, 2020),
+        creating all the photography for a book that documents sacred sites across Australia
+        in consultation with Indigenous communities and Elders.
+      </p>
+      <p>
+        Vicky co-founded <a href="https://www.nillumbio.org" target="_blank" rel="noopener">Nillumbio</a>,
+        a biodiversity-focused organisation in Nillumbik Shire, and convenes Friends of Biodiversity
+        at Hohnes Hill reserve in Eltham. Her photographic style is characterised by intimate
+        observation — "not just looking at Uluru, but looking at the insects around Uluru."
+      </p>
+    </div>
+  </section>
+
+  <section class="author-bio">
+    <img src="/images/authors/rod-placeholder.svg" alt="Portrait of Rod Fensham" width="200" height="200" />
+    <div>
+      <h2>Rod Fensham</h2>
+      <p class="author-role">Ecologist, University of Queensland &amp; Queensland Herbarium</p>
+      <!-- PLACEHOLDER: Replace with Rod's real bio -->
+      <p>
+        Professor Rod Fensham is an ecologist at the University of Queensland with extensive
+        research experience in Australian flora and vegetation. He created the
+        <em>ACE Guide to Eucalypts: Brisbane</em> (2021), establishing the bark-and-leaf
+        identification method that the Melbourne guide builds upon.
+      </p>
+    </div>
+  </section>
+</Page>
+
+<style>
+  .authors-intro {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-lg);
+    color: var(--color-text-secondary);
+  }
+
+  .author-bio {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-olive);
+  }
+
+  .author-bio:last-of-type {
+    border-bottom: none;
+  }
+
+  .author-bio img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .author-role {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .author-bio p + p {
+    margin-top: var(--space-sm);
+  }
+
+  @media (max-width: 640px) {
+    .author-bio {
+      grid-template-columns: 1fr;
+    }
+
+    .author-bio img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+</style>
