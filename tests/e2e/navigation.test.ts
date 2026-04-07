@@ -1,13 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Navigation', () => {
-  test('all nav links are visible and work', async ({ page }) => {
+  test('all 4 nav links are visible and work', async ({ page }) => {
     await page.goto('/');
 
     const navLinks = [
       { text: 'Home', href: '/' },
-      { text: 'Species', href: '/species/' },
-      { text: 'Identify', href: '/identify/' },
       { text: 'About', href: '/about/' },
       { text: 'Authors', href: '/authors/' },
       { text: 'Buy', href: '/buy/' },
@@ -20,24 +18,21 @@ test.describe('Navigation', () => {
     }
   });
 
-  test('species cards link to species pages', async ({ page }) => {
-    await page.goto('/species/');
-    const firstCard = page.locator('.species-card').first();
-    await expect(firstCard).toBeVisible();
-    const href = await firstCard.getAttribute('href');
-    expect(href).toMatch(/^\/species\/.+\/$/);
-  });
-
   test('logo links to home', async ({ page }) => {
     await page.goto('/about/');
     const logo = page.locator('.nav-logo');
     await expect(logo).toHaveAttribute('href', '/');
   });
 
-  test('buy buttons link to buy page or external retailers', async ({ page }) => {
+  test('buy buttons link to buy page or Stripe', async ({ page }) => {
     await page.goto('/');
     const buyButtons = page.locator('.buy-button');
     const count = await buyButtons.count();
     expect(count).toBeGreaterThan(0);
+  });
+
+  test('removed pages return 404', async ({ page }) => {
+    const response = await page.goto('/species/');
+    expect(response?.status()).toBe(404);
   });
 });

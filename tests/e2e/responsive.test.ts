@@ -14,16 +14,10 @@ for (const vp of viewports) {
       await page.goto('/');
       const navLinks = page.locator('.nav-links a');
       const count = await navLinks.count();
-      expect(count).toBe(6);
+      expect(count).toBe(4);
       for (let i = 0; i < count; i++) {
         await expect(navLinks.nth(i)).toBeVisible();
       }
-    });
-
-    test('species grid adapts to viewport', async ({ page }) => {
-      await page.goto('/species/');
-      const grid = page.locator('.species-grid');
-      await expect(grid).toBeVisible();
     });
 
     test('content does not overflow horizontally', async ({ page }) => {

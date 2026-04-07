@@ -7,19 +7,9 @@ test.describe('Build output', () => {
     expect(existsSync('dist/index.html')).toBe(true);
   });
 
-  test('generates species index', () => {
-    expect(existsSync('dist/species/index.html')).toBe(true);
-  });
-
-  test('generates species pages', () => {
-    expect(existsSync('dist/species/messmate-stringybark/index.html')).toBe(true);
-    expect(existsSync('dist/species/manna-gum/index.html')).toBe(true);
-  });
-
   test('generates content pages', () => {
     expect(existsSync('dist/about/index.html')).toBe(true);
     expect(existsSync('dist/authors/index.html')).toBe(true);
-    expect(existsSync('dist/identify/index.html')).toBe(true);
     expect(existsSync('dist/buy/index.html')).toBe(true);
   });
 
@@ -33,5 +23,10 @@ test.describe('Build output', () => {
 
   test('includes robots.txt', () => {
     expect(existsSync('dist/robots.txt')).toBe(true);
+  });
+
+  test('does not generate removed pages', () => {
+    expect(existsSync('dist/identify/index.html')).toBe(false);
+    expect(existsSync('dist/species/index.html')).toBe(false);
   });
 });

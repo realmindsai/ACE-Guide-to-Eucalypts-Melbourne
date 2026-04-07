@@ -9,15 +9,6 @@ test.describe('Schema.org JSON-LD', () => {
     expect(types).toContain('Book');
   });
 
-  test('species page has Article schema with speakable', async ({ page }) => {
-    await page.goto('/species/messmate-stringybark/');
-    const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
-    const article = schemas.map(s => JSON.parse(s)).find(s => s['@type'] === 'Article');
-    expect(article).toBeTruthy();
-    expect(article.speakable).toBeTruthy();
-    expect(article.headline).toContain('Messmate Stringybark');
-  });
-
   test('authors page has Person schema', async ({ page }) => {
     await page.goto('/authors/');
     const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
@@ -29,19 +20,13 @@ test.describe('Schema.org JSON-LD', () => {
     expect(persons.length).toBeGreaterThanOrEqual(2);
   });
 
-  test('identify page has HowTo schema', async ({ page }) => {
-    await page.goto('/identify/');
-    const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
-    const types = schemas.map(s => JSON.parse(s)['@type']);
-    expect(types).toContain('HowTo');
-  });
-
-  test('buy page has Book schema with offers', async ({ page }) => {
+  test('buy page has Book schema with Stripe offer', async ({ page }) => {
     await page.goto('/buy/');
     const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
     const book = schemas.map(s => JSON.parse(s)).find(s => s['@type'] === 'Book');
     expect(book).toBeTruthy();
     expect(book.offers).toBeTruthy();
+    expect(book.offers.url).toContain('stripe.com');
     expect(book.isbn).toBe('9780645232615');
   });
 });
