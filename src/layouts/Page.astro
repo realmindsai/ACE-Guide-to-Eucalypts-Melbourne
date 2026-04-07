@@ -1,0 +1,23 @@
+---
+// src/layouts/Page.astro
+// Generic content page layout — wraps content in an article at content-width.
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  schemaJson?: object | object[];
+  breadcrumbs?: { name: string; href: string }[];
+}
+
+const props = Astro.props;
+---
+
+<Base {...props}>
+  <article class="page section">
+    <div class="content-width">
+      <slot />
+    </div>
+  </article>
+</Base>
