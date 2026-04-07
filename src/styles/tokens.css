@@ -1,0 +1,47 @@
+/* Design tokens for ACE Guide to Eucalypts Melbourne.
+   Base values are tuned for the "Field Companion" preset.
+   See spec Section 2 for colour rationale and WCAG compliance notes.
+*/
+:root {
+  /* Earth layer (primary) */
+  --color-bg:             #F5F0EB;
+  --color-text:           #2C2C2A;
+  --color-text-secondary: #6B6560;
+
+  /* Canopy layer (accent) — see spec for usage constraints */
+  --color-green:          #4D6A4F;  /* Large text / headings only against bg (3.1:1) */
+  --color-olive:          #7A6F3A;  /* Decorative use preferred (4.5:1) */
+
+  /* Signal layer (functional) */
+  --color-cta:            #A8532E;  /* AA compliant against bg (4.71:1); button text uses --color-bg */
+  --color-cta-hover:      #8C4425;
+
+  /* Typography */
+  --font-heading:         'Fraunces', serif;
+  --font-body:            'Source Sans 3', sans-serif;
+  --font-size-base:       1.125rem; /* Applied to body, not html — rem stays 16px-based */
+  --line-height-body:     1.65;
+  --line-height-heading:  1.2;
+
+  /* Spacing */
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  6rem;
+
+  /* Layout */
+  --content-width:  45rem;
+  --wide-width:     72rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

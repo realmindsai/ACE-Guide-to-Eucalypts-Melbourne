@@ -1,0 +1,9 @@
+/* "Field Companion" — the default tone preset.
+   Warm & Inviting. Generous with context.
+   Base tokens.css is already tuned for this preset; this file contains only
+   the overrides that distinguish Field Companion from neutral.
+*/
+:root {
+  --color-bg: #F7F2EC; /* Slightly warmer than base — toward cream */
+  --line-height-body: 1.7;
+}
