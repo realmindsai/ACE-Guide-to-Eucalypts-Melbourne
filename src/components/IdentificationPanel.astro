@@ -1,0 +1,88 @@
+---
+// src/components/IdentificationPanel.astro
+// Structured data card shown on every species page.
+interface Props {
+  barkType: string;
+  leafDescription: string;
+  budFruitDescription: string;
+  heightRange: string;
+  floweringSeason: string;
+  locations: string[];
+}
+
+const { barkType, leafDescription, budFruitDescription, heightRange, floweringSeason, locations } = Astro.props;
+---
+
+<aside class="id-panel" aria-label="Identification summary">
+  <h2>Identification</h2>
+  <dl>
+    <dt>Bark</dt>
+    <dd>{barkType}</dd>
+
+    <dt>Leaf</dt>
+    <dd>{leafDescription}</dd>
+
+    <dt>Buds &amp; Fruit</dt>
+    <dd>{budFruitDescription}</dd>
+
+    <dt>Height</dt>
+    <dd>{heightRange}</dd>
+
+    <dt>Flowering</dt>
+    <dd>{floweringSeason}</dd>
+
+    <dt>Where to find it</dt>
+    <dd>
+      <ul>
+        {locations.map(loc => <li>{loc}</li>)}
+      </ul>
+    </dd>
+  </dl>
+</aside>
+
+<style>
+  .id-panel {
+    background-color: rgba(122, 111, 58, 0.08);
+    border-left: 3px solid var(--color-olive);
+    padding: var(--space-sm) var(--space-md);
+    margin-block: var(--space-md);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .id-panel h2 {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .id-panel dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-xs) var(--space-sm);
+  }
+
+  .id-panel dt {
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .id-panel dd {
+    font-size: 0.95rem;
+  }
+
+  .id-panel ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-sm);
+  }
+
+  .id-panel li::before {
+    content: '\2022 ';
+    color: var(--color-olive);
+  }
+
+  .id-panel li:first-child::before {
+    content: '';
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+// src/components/PhotoGallery.astro
+// Static CSS grid of figures — no JavaScript, no lightbox.
+// See spec Section 8: "gallery fully usable without JS"
+interface GalleryImage {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+  credit?: string;
+}
+
+const { images, credit = 'Photography by Vicky Shukuroglou' } = Astro.props;
+---
+
+<section class="photo-gallery" aria-label="Photo gallery">
+  <div class="gallery-grid">
+    {images.map(img => (
+      <figure>
+        <img src={img.src} alt={img.alt} loading="lazy" width="600" height="450" />
+        <figcaption>{img.caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+  {credit && <p class="gallery-credit">{credit}</p>}
+</section>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-sm);
+    margin-block: var(--space-md);
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  figure img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  figcaption {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-xs);
+    padding-inline: 0.25rem;
+  }
+
+  .gallery-credit {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    text-align: right;
+    margin-top: var(--space-xs);
+  }
+</style>
