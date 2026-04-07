@@ -1,0 +1,27 @@
+---
+// src/pages/404.astro
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page Not Found — ACE Guide to Eucalypts Melbourne"
+  description="This page doesn't exist. Find your way back to Melbourne's eucalypts."
+>
+  <section class="not-found section">
+    <div class="content-width">
+      <h1>This tree doesn't grow here.</h1>
+      <p>The page you're looking for doesn't exist. Try browsing the <a href="/species/">species index</a> or head <a href="/">home</a>.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .not-found {
+    text-align: center;
+    padding-block: var(--space-xl);
+  }
+
+  .not-found h1 {
+    margin-bottom: var(--space-sm);
+  }
+</style>

@@ -1,0 +1,5 @@
+# Welcome all crawlers — including AI search bots
+User-agent: *
+Allow: /
+
+Sitemap: https://ace-eucalypts-melbourne.com.au/sitemap-index.xml
