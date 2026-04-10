@@ -2,8 +2,9 @@
 // src/components/Nav.astro
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '/melbourne/', label: 'Melbourne' },
+  { href: '/brisbane/', label: 'Brisbane' },
   { href: '/about/', label: 'About' },
-  { href: '/authors/', label: 'Authors' },
   { href: '/buy/', label: 'Buy' },
 ];
 
@@ -17,8 +18,8 @@ function isActive(linkHref: string, current: string): boolean {
 
 <nav aria-label="Main navigation">
   <div class="nav-inner wide-width">
-    <a href="/" class="nav-logo" aria-label="ACE Guide to Eucalypts Melbourne — Home">
-      ACE Eucalypts Melbourne
+    <a href="/" class="nav-logo" aria-label="ACE Guide to Eucalypts — Home">
+      ACE Eucalypts
     </a>
     <ul class="nav-links" role="list">
       {navLinks.map(link => (

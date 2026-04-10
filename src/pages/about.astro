@@ -7,57 +7,132 @@ const breadcrumbs = [{ name: 'About', href: '/about/' }];
 ---
 
 <Page
-  title="About the ACE Guide to Eucalypts Melbourne"
-  description="A field guide to Melbourne's 36 eucalypt species. Bark texture, fruit characteristics, and intimate photography help you identify the eucalypts around you."
+  title="About the ACE Guide to Eucalypts"
+  description="About the ACE Guide to Eucalypts — field guides to Melbourne and Brisbane's eucalypt species, by Vicky Shukuroglou and Rod Fensham."
   breadcrumbs={breadcrumbs}
 >
   <h1>About the Guide</h1>
 
-  <!-- PLACEHOLDER: Replace with final copy -->
-  <p>
-    The ACE Guide to Eucalypts Melbourne covers 36 eucalypt species found across
-    the greater Melbourne region — 32 indigenous and 4 introduced. Each species
-    entry includes high-resolution photography of bark, leaves, buds, and fruit,
-    along with identification notes, habitat information, and where to find each
-    species in Melbourne's parks and reserves.
+  <p class="lead">
+    The ACE Guide to Eucalypts is a series of pocket field guides to Australia's eucalypt
+    species — practical, beautiful, and built to be used in the bush, not just on a bookshelf.
   </p>
 
   <p>
-    The guide walks you through identification using bark texture and fruit
-    characteristics — a practical method that works in the field with what you
-    can see and touch.
+    Each guide covers the eucalypts of a specific region, identified through bark texture
+    and fruit characteristics — a method that works year-round, without waiting for
+    flowering. High-resolution photography of bark, leaves, buds, and fruit sits alongside
+    identification notes, habitat information, and Aboriginal knowledge and names in local
+    language.
   </p>
 
-  <h2>Who It's For</h2>
   <p>
-    Bushwalkers who want to know the trees they're walking among. Gardeners
-    choosing indigenous species for their yard. Field naturalists. Anyone who
-    wants to give a beautiful, meaningful gift to someone who loves Melbourne's
-    bushland.
+    The Melbourne edition covers 36 species — 32 indigenous and 4 introduced — across
+    greater Melbourne. The Brisbane edition covers 37 species across greater Brisbane's
+    bushland reserves.
   </p>
 
   <h2>The Dahl Fellowship</h2>
-  <!-- PLACEHOLDER: Replace with real Eucalypt Australia story -->
   <p>
-    This guide was made possible through a Dahl Fellowship from
+    The Melbourne guide was made possible through a Dahl Fellowship from
     <a href="https://eucalyptaustralia.org.au/" target="_blank" rel="noopener">Eucalypt Australia</a>,
     supporting research and education about Australia's iconic eucalypt heritage.
   </p>
 
+  <!-- Authors -->
+  <h2>The Authors</h2>
+
+  <section class="author-bio">
+    <div class="author-body">
+      <h3>Vicky Shukuroglou</h3>
+      <p class="author-role">Author, Photographer, Artist &amp; Educator</p>
+      <p>
+        Vicky Shukuroglou is a multidisciplinary artist, photographer, and educator whose
+        work moves between intimate natural observation and deep cultural engagement.
+        She co-authored <em>Loving Country: A Guide to Sacred Australia</em> with Bruce Pascoe
+        (Hardie Grant, 2020), creating all the photography for a book that documents sacred
+        sites across Australia in consultation with Indigenous communities and Elders.
+      </p>
+      <p>
+        She created all the photography for the ACE Guide to Eucalypts Melbourne — macro
+        shots of bark, bud, fruit, and leaf that capture the distinct character of each species.
+        Her work brings the same care and rigour to eucalypts that she has brought to
+        documenting Australian Country.
+      </p>
+    </div>
+  </section>
+
+  <section class="author-bio">
+    <div class="author-body">
+      <h3>Roderick Fensham</h3>
+      <p class="author-role">Ecologist, University of Queensland &amp; Queensland Herbarium</p>
+      <p>
+        Professor Rod Fensham is an ecologist at the University of Queensland with extensive
+        research experience in Australian flora and vegetation. He developed the ACE
+        identification method — using bark texture and fruit shape to identify species in
+        the field — and first published it in the <em>ACE Guide to Eucalypts: Brisbane</em> (2021).
+      </p>
+      <p>
+        The Melbourne guide builds on that method, extended in collaboration with Vicky
+        Shukuroglou to cover the 36 eucalypt species of greater Melbourne.
+      </p>
+    </div>
+  </section>
+
   <div class="about-cta">
-    <BuyButton text="Get the Guide" />
+    <BuyButton text="Get the Melbourne Edition" />
+    <BuyButton
+      text="Get the Brisbane Edition"
+      href="/brisbane/"
+      external={false}
+    />
   </div>
 </Page>
 
 <style>
+  .lead {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+  }
+
+  p + p {
+    margin-top: var(--space-sm);
+  }
+
   h2 {
     margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .author-bio {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-olive);
+  }
+
+  .author-bio:last-of-type {
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-olive);
+  }
+
+  .author-body h3 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .author-role {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
     margin-bottom: var(--space-sm);
   }
 
   .about-cta {
     margin-top: var(--space-lg);
     padding-top: var(--space-lg);
-    border-top: 1px solid var(--color-olive);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    align-items: center;
   }
 </style>
