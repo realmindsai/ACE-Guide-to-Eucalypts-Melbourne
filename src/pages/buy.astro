@@ -84,12 +84,14 @@ const otherRetailers = [
         <!-- Melbourne Edition -->
         <div class="edition-card">
           <div class="edition-cover">
-            <Image
-              src={melbourneCover}
-              alt="Cover of the ACE Guide to Eucalypts Melbourne — eucalypt bark peeling in layers of grey, white, and rust"
-              width={360}
-              loading="eager"
-            />
+            <a href={melbourneStripeLink} target="_blank" rel="noopener" aria-label="Buy Melbourne edition on Stripe">
+              <Image
+                src={melbourneCover}
+                alt="Cover of the ACE Guide to Eucalypts Melbourne — eucalypt bark peeling in layers of grey, white, and rust"
+                width={360}
+                loading="eager"
+              />
+            </a>
           </div>
           <div class="edition-details">
             <h2>Melbourne</h2>
@@ -126,12 +128,14 @@ const otherRetailers = [
         <!-- Brisbane Edition -->
         <div class="edition-card">
           <div class="edition-cover">
-            <Image
-              src={brisbaneCover}
-              alt="Cover of the ACE Guide to Eucalypts Brisbane"
-              width={360}
-              loading="eager"
-            />
+            <a href={brisbaneStripeLink} target="_blank" rel="noopener" aria-label="Buy Brisbane edition on Stripe">
+              <Image
+                src={brisbaneCover}
+                alt="Cover of the ACE Guide to Eucalypts Brisbane"
+                width={360}
+                loading="eager"
+              />
+            </a>
           </div>
           <div class="edition-details">
             <h2>Brisbane</h2>
@@ -223,10 +227,20 @@ const otherRetailers = [
     gap: var(--space-md);
   }
 
+  .edition-cover a {
+    display: block;
+  }
+
   .edition-cover img {
     width: 100%;
     border-radius: 4px;
     box-shadow: 0 4px 20px rgba(44, 44, 42, 0.1);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .edition-cover a:hover img {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(44, 44, 42, 0.18);
   }
 
   .edition-details h2 {
