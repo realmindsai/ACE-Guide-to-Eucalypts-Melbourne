@@ -1,0 +1,274 @@
+---
+// src/pages/faq.astro
+import Page from '../layouts/Page.astro';
+import BuyButton from '../components/BuyButton.astro';
+
+const breadcrumbs = [{ name: 'FAQ', href: '/faq/' }];
+
+const faqs = [
+  {
+    q: 'Do I need any botanical knowledge to use these guides?',
+    a: `Not at all. The ACE method was designed for anyone who can look at a tree.
+        You learn to read bark — does it peel in long ribbons? grip in hard interlocking plates?
+        shed cleanly to smooth white or cream? — and then confirm with the fruit capsules,
+        which are present year-round. No Latin, no prior training, no special equipment needed.`,
+  },
+  {
+    q: 'Does the guide cover my suburb?',
+    a: `The Melbourne edition covers the greater Melbourne region — from the Dandenong Ranges
+        in the east to the Otway foothills in the west, including Melbourne's parks,
+        bushland reserves, and peri-urban areas. Each species entry notes the local parks
+        and reserves where you're most likely to find it.
+
+        The Brisbane edition covers greater Brisbane's bushland reserves, with a map
+        and quick-reference list to help you find particular species.`,
+  },
+  {
+    q: 'Does it include a species key?',
+    a: `Yes. A visual key at the front sorts species by bark type — the most reliable
+        field characteristic because it's present and consistent year-round. Once you've
+        placed a tree in a bark category (stringybark, box, ironbark, or gum), you're
+        already looking at a small handful of candidates. The fruit narrows it to one.`,
+  },
+  {
+    q: 'Do I need to wait for the tree to flower?',
+    a: `No — and that's the whole point. Traditional eucalypt identification often relies
+        on flowers, which appear briefly and inconsistently. The ACE method uses bark
+        texture and fruit shape, which are present every day of the year. You can make
+        a confident identification in any season, on any day you happen to be in the bush.`,
+  },
+  {
+    q: 'Does it include indigenous knowledge?',
+    a: `Yes. Each species entry acknowledges the Aboriginal knowledge connected to that
+        species and includes names in local language — Wurundjeri Woi-wurrung and
+        Bunurong/Boon Wurrung for Melbourne, and local Jagera and Turrbal language names
+        for Brisbane. The guides recognise that these trees have been known, named, and
+        used by Aboriginal people for tens of thousands of years.`,
+  },
+  {
+    q: 'I\'ve never been able to identify a tree. Will this actually work for me?',
+    a: `This is exactly who the guide is written for. The method is step-by-step:
+        look at the bark type first — that gives you a category. Then look at the fruit —
+        that gives you a species. Most beginners make their first confident identification
+        on their first outing. The photography is precise enough that if your fruit matches
+        the photo, you've got it.`,
+  },
+  {
+    q: 'Will I actually learn to identify eucalypts, or will I just be looking things up each time?',
+    a: `Both, and that's intentional. The guide teaches a repeatable method — not a list of
+        facts to memorise, but a way of seeing trees. After a few outings you'll start
+        recognising bark types by instinct, and familiar species by sight. The guide stays
+        useful even as your knowledge grows, because it's always faster to confirm with
+        a photo than to second-guess yourself.`,
+  },
+  {
+    q: 'Do I need to know botanical language?',
+    a: `No. The guides use plain English throughout. Where botanical terms are helpful —
+        like "operculum" for the cap that pops off a bud, or "pedicel" for the stalk —
+        they're explained in context, and the photography makes the meaning immediately
+        clear. You won't need a glossary to use the guide in the field.`,
+  },
+  {
+    q: 'What does each species entry include?',
+    a: `For each species you get: high-resolution photography of bark, leaves, buds,
+        and fruit — all the characteristics you need to make a positive identification.
+        Identification notes covering the distinguishing features. Habitat information
+        and notes on where to find the species in local parks and reserves.
+        Aboriginal names and knowledge. And for introduced species, notes on where
+        they come from and why they're here.`,
+  },
+  {
+    q: 'Will I learn about the local ecology — not just the names?',
+    a: `Yes. Each entry covers habitat — what kind of soil, slope, or rainfall the species
+        prefers, and what other plants it grows with. The guides also cover evolutionary
+        context (why so many eucalypt species? how did they diversify?), habitat values
+        for fauna, and the broader ecological role these trees play. It's not just
+        an identification tool — it's an introduction to eucalypt ecology.`,
+  },
+  {
+    q: 'What\'s the difference between the Melbourne and Brisbane editions?',
+    a: `They cover different regions and different species — 36 for Melbourne (32 indigenous,
+        4 introduced) and 37 for Brisbane (36 local, 1 naturalised). The Melbourne edition
+        was co-authored by Vicky Shukuroglou and Rod Fensham; the Brisbane edition is
+        by Rod Fensham alone. Both use the same ACE identification method and the same
+        format. If you spend time in both cities, you'll want both.`,
+  },
+  {
+    q: 'Is it actually pocket-sized?',
+    a: `Yes. 48 pages, softcover, designed to go in a jacket pocket or daypack. It won't
+        weigh you down on a walk. The photography is printed at a size that's genuinely
+        useful for field comparison — big enough to see the detail, small enough to carry.`,
+  },
+  {
+    q: 'Can I use it with children or in an educational setting?',
+    a: `Absolutely. The visual method and clear photography make the guides accessible
+        from about age 10 upward, and the bark-first approach turns identification into
+        a game younger kids can engage with. Teachers have used both editions in
+        environmental education programs — the indigenous knowledge sections are
+        particularly valued in this context.`,
+  },
+  {
+    q: 'Is it just for botanists and serious naturalists?',
+    a: `Far from it. It's written for anyone curious about the trees around them —
+        bushwalkers, gardeners choosing indigenous species for their yard, people
+        who walk in the same park every weekend and want to know what they're looking at.
+        Botanists will find it rigorous and useful. Absolute beginners will find it
+        welcoming. That's a hard balance to strike, and it's what makes these guides
+        genuinely first-class.`,
+  },
+  {
+    q: 'How do I buy a copy?',
+    a: `Both editions are available directly through this website via secure Stripe checkout —
+        $30 AUD per copy plus $6 postage anywhere in Australia. No account needed.
+        You can also order either edition through any Australian bookshop using the ISBN,
+        or find them at selected retailers including the Australian Koala Foundation.
+        Bulk and wholesale orders: email aceguidetoeucalypts@gmail.com.`,
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: a.replace(/\s+/g, ' ').trim(),
+    },
+  })),
+};
+---
+
+<Page
+  title="FAQ — ACE Guide to Eucalypts"
+  description="Frequently asked questions about the ACE Guide to Eucalypts — Melbourne and Brisbane editions. Do you need botanical knowledge? Does it cover your suburb? Does it include indigenous knowledge?"
+  schemaJson={faqSchema}
+  breadcrumbs={breadcrumbs}
+>
+  <h1>Frequently asked questions</h1>
+
+  <p class="faq-intro">
+    Everything you want to know before picking up the guide — and a few things
+    you didn't know you wanted to know.
+  </p>
+
+  <div class="faq-list">
+    {faqs.map(({ q, a }) => (
+      <details class="faq-item">
+        <summary class="faq-question">{q}</summary>
+        <div class="faq-answer">
+          {a.trim().split(/\n\s*\n/).map(para => (
+            <p set:html={para.trim().replace(/\n/g, ' ')} />
+          ))}
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <div class="faq-cta">
+    <p>Ready to take one into the bush?</p>
+    <div class="faq-buttons">
+      <BuyButton text="Buy Melbourne — $36 AUD" href="https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01" external={true} />
+      <BuyButton text="Buy Brisbane — $36 AUD" href="https://buy.stripe.com/4gM6ozcwSguW5m78KhgjC02" external={true} />
+    </div>
+    <p class="faq-secure">Secure checkout via Stripe. No account needed.</p>
+  </div>
+</Page>
+
+<style>
+  .faq-intro {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+    line-height: 1.7;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--color-olive);
+  }
+
+  .faq-item:last-of-type {
+    border-bottom: 1px solid var(--color-olive);
+  }
+
+  .faq-question {
+    display: block;
+    padding: var(--space-md) 0;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-right: 2rem;
+    line-height: 1.4;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: var(--space-md);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--color-olive);
+    line-height: 1;
+    transition: transform 150ms ease;
+  }
+
+  details[open] .faq-question::after {
+    content: '−';
+  }
+
+  .faq-question:hover {
+    color: var(--color-cta);
+  }
+
+  .faq-answer {
+    padding-bottom: var(--space-md);
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+  }
+
+  .faq-answer p + p {
+    margin-top: var(--space-sm);
+  }
+
+  /* CTA */
+  .faq-cta {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    text-align: center;
+  }
+
+  .faq-cta > p:first-child {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .faq-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  .faq-secure {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+</style>
