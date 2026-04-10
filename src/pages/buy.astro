@@ -5,29 +5,61 @@ import Base from '../layouts/Base.astro';
 import BuyButton from '../components/BuyButton.astro';
 
 import melbourneCover from '../assets/book-images/melbourne-cover.jpg';
+import brisbaneCover from '../assets/book-images/brisbane-cover.jpg';
 
 const breadcrumbs = [{ name: 'Buy', href: '/buy/' }];
 
-const stripePaymentLink = 'https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01';
+const melbourneStripeLink = 'https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01';
+const brisbaneStripeLink  = 'https://buy.stripe.com/4gM6ozcwSguW5m78KhgjC02';
 
-const bookSchema = {
+const pageSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Book',
-  name: 'ACE Guide to Eucalypts Melbourne',
-  author: [
-    { '@type': 'Person', name: 'Vicky Shukuroglou' },
-    { '@type': 'Person', name: 'Roderick Fensham' },
+  '@type': 'ItemList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      item: {
+        '@type': 'Book',
+        name: 'ACE Guide to Eucalypts Melbourne',
+        author: [
+          { '@type': 'Person', name: 'Vicky Shukuroglou' },
+          { '@type': 'Person', name: 'Roderick Fensham' },
+        ],
+        isbn: '9780645232615',
+        publisher: { '@type': 'Organization', name: 'ACE Publishing' },
+        description: "A field guide to Melbourne's 36 eucalypt species, identified through bark texture and fruit characteristics.",
+        offers: {
+          '@type': 'Offer',
+          availability: 'https://schema.org/InStock',
+          priceCurrency: 'AUD',
+          price: '30',
+          url: melbourneStripeLink,
+        },
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      item: {
+        '@type': 'Book',
+        name: 'ACE Guide to Eucalypts Brisbane',
+        author: [
+          { '@type': 'Person', name: 'Roderick Fensham' },
+        ],
+        isbn: '9780645232608',
+        publisher: { '@type': 'Organization', name: 'ACE Publishing' },
+        description: "A field guide to Brisbane's 37 eucalypt species, identified through bark texture and fruit characteristics.",
+        offers: {
+          '@type': 'Offer',
+          availability: 'https://schema.org/InStock',
+          priceCurrency: 'AUD',
+          price: '30',
+          url: brisbaneStripeLink,
+        },
+      },
+    },
   ],
-  isbn: '9780645232615',
-  publisher: { '@type': 'Organization', name: 'ACE Publishing' },
-  description: 'A field guide to Melbourne\'s 36 eucalypt species, identified through bark texture and fruit characteristics.',
-  offers: {
-    '@type': 'Offer',
-    availability: 'https://schema.org/InStock',
-    priceCurrency: 'AUD',
-    price: '30',
-    url: stripePaymentLink,
-  },
 };
 
 const otherRetailers = [
@@ -38,113 +70,170 @@ const otherRetailers = [
 ---
 
 <Base
-  title="Buy the ACE Guide to Eucalypts Melbourne"
-  description="Purchase the ACE Guide to Eucalypts Melbourne — $30 + postage. Secure Stripe checkout."
-  schemaJson={bookSchema}
+  title="Buy the ACE Guide to Eucalypts — Melbourne &amp; Brisbane"
+  description="Purchase the ACE Guide to Eucalypts — Melbourne or Brisbane edition. $30 + postage. Secure Stripe checkout."
+  schemaJson={pageSchema}
   breadcrumbs={breadcrumbs}
 >
   <section class="buy-page section">
     <div class="content-width">
-      <div class="buy-grid">
-        <div class="buy-cover">
-          <Image
-            src={melbourneCover}
-            alt="Cover of the ACE Guide to Eucalypts Melbourne — eucalypt bark peeling in layers of grey, white, and rust"
-            width={400}
-            loading="eager"
-          />
-        </div>
+      <h1 class="buy-heading">Choose your edition</h1>
 
-        <div class="buy-details">
-          <h1>ACE Guide to Eucalypts Melbourne</h1>
-          <p class="buy-subtitle">
-            A field guide to Melbourne's 36 eucalypt species
-          </p>
+      <div class="editions-grid">
 
-          <dl class="book-facts">
-            <dt>Authors</dt>
-            <dd>Vicky Shukuroglou &amp; Roderick Fensham</dd>
-
-            <dt>Publisher</dt>
-            <dd>ACE Publishing</dd>
-
-            <dt>ISBN</dt>
-            <dd>9780645232615</dd>
-
-            <dt>Price</dt>
-            <dd>$30 AUD + $6 postage (Australia)</dd>
-
-            <dt>Format</dt>
-            <dd>Softcover pocket guide</dd>
-          </dl>
-
-          <!-- Primary CTA: Stripe Payment Link -->
-          <div class="buy-primary">
-            <BuyButton
-              text="Buy Now — $36 AUD (inc. postage)"
-              href={stripePaymentLink}
-              external={true}
+        <!-- Melbourne Edition -->
+        <div class="edition-card">
+          <div class="edition-cover">
+            <Image
+              src={melbourneCover}
+              alt="Cover of the ACE Guide to Eucalypts Melbourne — eucalypt bark peeling in layers of grey, white, and rust"
+              width={360}
+              loading="eager"
             />
-            <p class="buy-secure">Secure checkout via Stripe. No account needed.</p>
           </div>
+          <div class="edition-details">
+            <h2>Melbourne</h2>
+            <p class="edition-subtitle">36 eucalypt species of greater Melbourne</p>
 
-          <!-- Secondary: Other retailers -->
-          <div class="buy-secondary">
-            <h2>Also available from</h2>
-            <div class="retailer-buttons">
-              {otherRetailers.map(r => (
-                <BuyButton
-                  text={r.name}
-                  href={r.href}
-                  external={true}
-                />
-              ))}
+            <dl class="book-facts">
+              <dt>Authors</dt>
+              <dd>Vicky Shukuroglou &amp; Roderick Fensham</dd>
+
+              <dt>Publisher</dt>
+              <dd>ACE Publishing</dd>
+
+              <dt>ISBN</dt>
+              <dd>9780645232615</dd>
+
+              <dt>Price</dt>
+              <dd>$30 AUD + $6 postage (Australia)</dd>
+
+              <dt>Format</dt>
+              <dd>Softcover pocket guide</dd>
+            </dl>
+
+            <div class="buy-primary">
+              <BuyButton
+                text="Buy Now — $36 AUD (inc. postage)"
+                href={melbourneStripeLink}
+                external={true}
+              />
+              <p class="buy-secure">Secure checkout via Stripe. No account needed.</p>
             </div>
           </div>
-
-          <p class="buy-indie">
-            Or ask your local bookshop — they can order it by ISBN.
-          </p>
-
-          <p class="buy-contact">
-            Wholesale or bulk orders? Email <a href="mailto:aceguidetoeucalypts@gmail.com">aceguidetoeucalypts@gmail.com</a>.
-          </p>
-
-          <p class="buy-gift">
-            Know someone who walks in Melbourne's bushland? This makes a meaningful gift.
-          </p>
         </div>
+
+        <!-- Brisbane Edition -->
+        <div class="edition-card">
+          <div class="edition-cover">
+            <Image
+              src={brisbaneCover}
+              alt="Cover of the ACE Guide to Eucalypts Brisbane"
+              width={360}
+              loading="eager"
+            />
+          </div>
+          <div class="edition-details">
+            <h2>Brisbane</h2>
+            <p class="edition-subtitle">37 eucalypt species of greater Brisbane</p>
+
+            <dl class="book-facts">
+              <dt>Author</dt>
+              <dd>Roderick Fensham</dd>
+
+              <dt>Publisher</dt>
+              <dd>ACE Publishing</dd>
+
+              <dt>ISBN</dt>
+              <dd>9780645232608</dd>
+
+              <dt>Price</dt>
+              <dd>$30 AUD + $6 postage (Australia)</dd>
+
+              <dt>Format</dt>
+              <dd>Softcover pocket guide</dd>
+            </dl>
+
+            <div class="buy-primary">
+              <BuyButton
+                text="Buy Now — $36 AUD (inc. postage)"
+                href={brisbaneStripeLink}
+                external={true}
+              />
+              <p class="buy-secure">Secure checkout via Stripe. No account needed.</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.editions-grid -->
+
+      <!-- Shared info below both cards -->
+      <div class="buy-shared">
+        <div class="buy-secondary">
+          <h2>Also available from</h2>
+          <div class="retailer-buttons">
+            {otherRetailers.map(r => (
+              <BuyButton
+                text={r.name}
+                href={r.href}
+                external={true}
+              />
+            ))}
+          </div>
+        </div>
+
+        <p class="buy-indie">
+          Or ask your local bookshop — they can order either edition by ISBN.
+        </p>
+
+        <p class="buy-contact">
+          Wholesale or bulk orders? Email <a href="mailto:aceguidetoeucalypts@gmail.com">aceguidetoeucalypts@gmail.com</a>.
+        </p>
+
+        <p class="buy-gift">
+          Know someone who walks in the bush? These make a meaningful gift.
+        </p>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .buy-grid {
+  .buy-heading {
+    margin-bottom: var(--space-md);
+  }
+
+  .editions-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-lg);
     align-items: start;
+    margin-bottom: var(--space-lg);
   }
 
-  @media (max-width: 640px) {
-    .buy-grid {
+  @media (max-width: 860px) {
+    .editions-grid {
       grid-template-columns: 1fr;
     }
-
-    .buy-cover {
-      max-width: 300px;
-      margin-inline: auto;
-    }
   }
 
-  .buy-cover img {
+  .edition-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .edition-cover img {
     width: 100%;
     border-radius: 4px;
     box-shadow: 0 4px 20px rgba(44, 44, 42, 0.1);
   }
 
-  .buy-subtitle {
+  .edition-details h2 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .edition-subtitle {
     font-size: 1.125rem;
     color: var(--color-text-secondary);
     margin-bottom: var(--space-md);
@@ -171,6 +260,11 @@ const otherRetailers = [
     font-size: 0.8rem;
     color: var(--color-text-secondary);
     margin-top: var(--space-xs);
+  }
+
+  .buy-shared {
+    border-top: 1px solid var(--color-text-secondary);
+    padding-top: var(--space-md);
   }
 
   .buy-secondary {
