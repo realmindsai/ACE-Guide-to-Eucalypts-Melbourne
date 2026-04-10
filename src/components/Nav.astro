@@ -1,25 +1,27 @@
 ---
 // src/components/Nav.astro
+import { url } from '../utils/url';
+
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/melbourne/', label: 'Melbourne' },
-  { href: '/brisbane/', label: 'Brisbane' },
-  { href: '/about/', label: 'About' },
-  { href: '/faq/', label: 'FAQ' },
-  { href: '/buy/', label: 'Buy' },
+  { href: url('/'),           label: 'Home' },
+  { href: url('/melbourne/'), label: 'Melbourne' },
+  { href: url('/brisbane/'),  label: 'Brisbane' },
+  { href: url('/about/'),     label: 'About' },
+  { href: url('/faq/'),       label: 'FAQ' },
+  { href: url('/buy/'),       label: 'Buy' },
 ];
 
 const currentPath = Astro.url.pathname;
 
 function isActive(linkHref: string, current: string): boolean {
-  if (linkHref === '/') return current === '/';
+  if (linkHref === url('/')) return current === url('/') || current === url('/').slice(0, -1);
   return current === linkHref || current.startsWith(linkHref);
 }
 ---
 
 <nav aria-label="Main navigation">
   <div class="nav-inner wide-width">
-    <a href="/" class="nav-logo" aria-label="ACE Guide to Eucalypts — Home">
+    <a href={url('/')} class="nav-logo" aria-label="ACE Guide to Eucalypts — Home">
       ACE Eucalypts
     </a>
     <ul class="nav-links" role="list">

@@ -2,6 +2,7 @@
 // src/pages/about.astro
 import Page from '../layouts/Page.astro';
 import BuyButton from '../components/BuyButton.astro';
+import { url } from '../utils/url';
 
 const breadcrumbs = [{ name: 'About', href: '/about/' }];
 ---
@@ -83,7 +84,7 @@ const breadcrumbs = [{ name: 'About', href: '/about/' }];
     <BuyButton text="Get the Melbourne Edition" />
     <BuyButton
       text="Get the Brisbane Edition"
-      href="/brisbane/"
+      href={url('/brisbane/')}
       external={false}
     />
   </div>

@@ -1,13 +1,16 @@
 ---
 // src/components/BuyButton.astro
 // Terracotta CTA button. Used on every page.
+import { url } from '../utils/url';
+
 interface Props {
   text?: string;
   href?: string;
   external?: boolean;
 }
 
-const { text = 'Get the Guide', href = '/buy/', external = href !== '/buy/' } = Astro.props;
+const buyUrl = url('/buy/');
+const { text = 'Get the Guide', href = buyUrl, external = href !== buyUrl } = Astro.props;
 ---
 
 <a

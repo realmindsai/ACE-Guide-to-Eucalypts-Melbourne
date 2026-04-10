@@ -3,8 +3,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // Update this to the final domain once DNS is live
-  site: 'https://ace-eucalypts-melbourne.com.au',
+  site: 'https://realmindsai.github.io',
+  base: '/ACE-Guide-to-Eucalypts-Melbourne',
   integrations: [sitemap()],
   build: {
     inlineStylesheets: 'auto',
