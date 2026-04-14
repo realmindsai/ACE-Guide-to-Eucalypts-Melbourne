@@ -11,9 +11,6 @@ import cover        from '../assets/book-images/melbourne-cover.jpg';
 import spread01     from '../assets/book-images/melbourne-spread-01.jpg';
 import spread13     from '../assets/book-images/melbourne-spread-13.jpg';
 import spread31     from '../assets/book-images/melbourne-spread-31.jpg';
-import baxteri      from '../assets/book-images/baxteri-page.jpg';
-import shiningGum   from '../assets/book-images/interior-shining-gum.jpg';
-import plunkett     from '../assets/book-images/interior-plunkett-mallee.jpg';
 import bark         from '../assets/book-images/melliodora-bark.jpg';
 import globBud      from '../assets/book-images/globoidea-bud.jpg';
 import camFruit     from '../assets/book-images/camaldulensis-fruit.jpg';
@@ -108,26 +105,26 @@ const bookSchema = {
     </div>
   </section>
 
-  <!-- Species pages: the baxteri + shining gum + plunkett style -->
-  <section class="section species-pages" aria-label="Sample species pages">
+  <!-- Species detail: each species, fully documented -->
+  <section class="section species-pages" aria-label="Sample species details">
     <div class="wide-width">
       <h2 class="content-width">Each species, fully documented</h2>
       <p class="species-sub content-width">
         Bark, bud, fruit, and leaf — all the characteristics you need to confirm
         an identification, together on one page.
       </p>
-      <div class="species-grid">
+      <div class="botany-grid">
         <figure>
-          <Image src={baxteri} alt="Species page for Brown Stringybark (Eucalyptus baxteri) — leaves, buds, fruit and bark on dark background" width={420} loading="lazy" />
-          <figcaption>Brown Stringybark <em>(E. baxteri)</em></figcaption>
+          <Image src={bark} alt="Ribbony bark of Yellow Box (Eucalyptus melliodora) peeling in warm ochre and grey strips" width={500} loading="lazy" />
+          <figcaption>Yellow Box bark <em>(E. melliodora)</em></figcaption>
         </figure>
         <figure>
-          <Image src={shiningGum} alt="Species page for Shining Gum (Eucalyptus nitens) — leaves, buds and bark on dark background" width={420} loading="lazy" />
-          <figcaption>Shining Gum <em>(E. nitens)</em></figcaption>
+          <Image src={camFruit} alt="Fruit capsules of River Red Gum (Eucalyptus camaldulensis) — small woody cups in a cluster" width={500} loading="lazy" />
+          <figcaption>River Red Gum fruit <em>(E. camaldulensis)</em></figcaption>
         </figure>
         <figure>
-          <Image src={plunkett} alt="Species page for Plunkett Mallee (Eucalyptus curtisii) — leaves, buds, fruit and bark on dark background" width={420} loading="lazy" />
-          <figcaption>Plunkett Mallee <em>(E. curtisii)</em></figcaption>
+          <Image src={goniBud} alt="Bud of Long-leafed Box (Eucalyptus goniocalyx) — a ribbed cap on a slender pedicel" width={500} loading="lazy" />
+          <figcaption>Long-leafed Box bud <em>(E. goniocalyx)</em></figcaption>
         </figure>
       </div>
     </div>
@@ -144,24 +141,12 @@ const bookSchema = {
       </p>
       <div class="botany-grid">
         <figure>
-          <Image src={bark} alt="Ribbony bark of Yellow Box (Eucalyptus melliodora) peeling in warm ochre and grey strips" width={500} loading="lazy" />
-          <figcaption>Yellow Box bark <em>(E. melliodora)</em></figcaption>
-        </figure>
-        <figure>
           <Image src={globBud} alt="Clustered buds of White Stringybark (Eucalyptus globoidea) — pale green and intricate" width={500} loading="lazy" />
           <figcaption>White Stringybark buds <em>(E. globoidea)</em></figcaption>
         </figure>
-        <figure>
-          <Image src={camFruit} alt="Fruit capsules of River Red Gum (Eucalyptus camaldulensis) — small woody cups in a cluster" width={500} loading="lazy" />
-          <figcaption>River Red Gum fruit <em>(E. camaldulensis)</em></figcaption>
-        </figure>
-        <figure>
+        <figure class="leaf-crop">
           <Image src={fulgsLeaf} alt="Juvenile leaves of Peppermint (Eucalyptus fulgens) — broad and blue-green, clasping the stem" width={500} loading="lazy" />
           <figcaption>Juvenile leaf <em>(E. fulgens)</em></figcaption>
-        </figure>
-        <figure>
-          <Image src={goniBud} alt="Bud of Long-leafed Box (Eucalyptus goniocalyx) — a ribbed cap on a slender pedicel" width={500} loading="lazy" />
-          <figcaption>Long-leafed Box bud <em>(E. goniocalyx)</em></figcaption>
         </figure>
         <figure>
           <Image src={macrFruit} alt="Long woody fruit of Red Stringybark (Eucalyptus macrorhynca) — elongated and ribbed" width={500} loading="lazy" />
@@ -325,40 +310,17 @@ const bookSchema = {
 
   /* Species pages */
   .species-pages {
-    background-color: #1a1a18;
     padding-block: var(--space-lg);
   }
 
   .species-pages h2 {
-    color: var(--color-bg);
     margin-bottom: var(--space-xs);
   }
 
   .species-sub {
-    color: #b5afa9;
+    color: var(--color-text-secondary);
     font-size: 1.05rem;
     margin-bottom: var(--space-md);
-  }
-
-  .species-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-md);
-  }
-
-  .species-grid figure {
-    margin: 0;
-  }
-
-  .species-grid img {
-    width: 100%;
-    border-radius: 4px;
-  }
-
-  .species-grid figcaption {
-    color: #b5afa9;
-    font-size: 0.85rem;
-    margin-top: var(--space-xs);
   }
 
   /* Botanical photography */
@@ -404,6 +366,10 @@ const bookSchema = {
     object-fit: cover;
     border-radius: 4px;
     display: block;
+  }
+
+  .leaf-crop img {
+    object-position: right;
   }
 
   .botany-grid figcaption {
