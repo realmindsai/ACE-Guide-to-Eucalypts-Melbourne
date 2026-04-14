@@ -19,7 +19,7 @@ const bookSchema = {
   ],
   isbn: '9780645232608',
   publisher: { '@type': 'Organization', name: 'Keeaira Press' },
-  description: "A field guide to Brisbane's 37 eucalypt species, identified through bark texture and fruit characteristics.",
+  description: "A field guide to Brisbane's 37 eucalypt species, identified by bark, fruit, bud, and leaf.",
   offers: {
     '@type': 'Offer',
     availability: 'https://schema.org/InStock',
@@ -32,7 +32,7 @@ const bookSchema = {
 
 <Base
   title="ACE Guide to Eucalypts Brisbane — Field Guide to 37 Species"
-  description="A field guide to Brisbane's 37 eucalypt species. Identified by bark and fruit, with photography and habitat notes. By Roderick Fensham."
+  description="A field guide to Brisbane's 37 eucalypt species. Identified by bark, fruit, bud, and leaf, with photography and habitat notes. By Roderick Fensham."
   schemaJson={bookSchema}
   breadcrumbs={[{ name: 'Brisbane', href: '/brisbane/' }]}
 >
@@ -53,18 +53,18 @@ const bookSchema = {
         <p class="hero-eyebrow">ACE Guide to Eucalypts</p>
         <h1>Brisbane</h1>
         <p class="hero-subtitle">
-          37 eucalypt species of greater Brisbane — identified through bark
-          and fruit, with habitat notes and a guide to where each species
-          grows in Brisbane's bushland reserves.
+          37 eucalypt species of greater Brisbane — identified by bark, fruit,
+          bud, and leaf, with habitat notes and a guide to where species
+          grow in Brisbane's bushland reserves.
         </p>
         <div class="hero-meta">
           <span>Roderick Fensham</span>
           <span class="meta-sep">·</span>
           <span>Softcover, 48 pp</span>
           <span class="meta-sep">·</span>
-          <span>$36 AUD inc. postage</span>
+          <span>$30 AUD + $7.50 postage &amp; handling</span>
         </div>
-        <BuyButton text="Buy Now — $36 AUD" href={stripeLink} external={true} />
+        <BuyButton text="Buy Now — $30 AUD" href={stripeLink} external={true} />
         <p class="hero-secure">Secure checkout via Stripe. No account needed.</p>
       </div>
     </div>
@@ -83,8 +83,8 @@ const bookSchema = {
         <p>
           Professor Rod Fensham, ecologist at the University of Queensland and the
           Queensland Herbarium, developed the ACE identification method — using bark
-          texture and fruit shape to name a species without needing to wait for
-          flowering. This guide puts that method in your pocket.
+          texture, fruit shape, bud form, and leaf character to name a species without
+          needing to wait for flowering. This guide puts that method in your pocket.
         </p>
         <p>
           A map and quick-reference species list help you find particular eucalypts
@@ -133,11 +133,12 @@ const bookSchema = {
   <!-- Method -->
   <section class="section method">
     <div class="content-width">
-      <h2>Identified by bark and fruit</h2>
+      <h2>Identified by bark, fruit, bud, and leaf</h2>
       <p>
         The ACE method works in the field, any time of year. Bark texture is constant —
         stringybark sheds in long strips, boxes hold their bark firmly, gums shed to
-        smooth white or cream. Fruit shape confirms the identification.
+        smooth white or cream. Fruit shape, bud form, and leaf character confirm the
+        identification.
       </p>
       <p>
         You don't need to be a botanist. You just need the guide in your hand and
@@ -150,9 +151,9 @@ const bookSchema = {
   <section class="section final-cta">
     <div class="content-width">
       <h2>Get your copy</h2>
-      <p>$30 AUD + $6 postage anywhere in Australia. Pocket-sized, 48 pages.</p>
+      <p>$30 AUD + $7.50 postage &amp; handling anywhere in Australia. Pocket-sized, 48 pages.</p>
       <p class="cta-isbn">ISBN 9780645232608 — available to order through any bookshop.</p>
-      <BuyButton text="Buy Now — $36 AUD (inc. postage)" href={stripeLink} external={true} />
+      <BuyButton text="Buy Now — $30 AUD" href={stripeLink} external={true} />
       <p class="cta-note">Secure checkout via Stripe. No account needed.</p>
     </div>
   </section>

@@ -9,7 +9,7 @@ const faqs = [
   {
     q: 'Do I need any botanical knowledge to use these guides?',
     a: `For most people, no. The ACE method was designed around what you can see and touch
-        in the field — bark texture, fruit shape, leaf form. You learn to ask: does the bark
+        in the field — bark texture, fruit shape, bud form, leaf character. You learn to ask: does the bark
         peel in long ribbons? grip in hard plates? shed cleanly to smooth white? Where
         botanical terms do appear (like "operculum" for the bud cap), they're explained
         in context. Some species can still be tricky, but you don't need a science background
@@ -35,11 +35,11 @@ const faqs = [
   },
   {
     q: 'Do I need to wait for the tree to flower?',
-    a: `Usually not. The ACE method leans on bark texture and fruit shape, which are
-        present for most of the year in most species. Traditional eucalypt identification
-        often relies on flowers, which can be brief and variable — this approach sidesteps
-        that. That said, a few species are genuinely difficult without flowers, and the
-        guides are upfront about where uncertainty remains.`,
+    a: `Usually not. The ACE method leans on bark texture, fruit shape, bud form, and
+        leaf character, which are present for most of the year in most species. Traditional
+        eucalypt identification often relies on flowers, which can be brief and variable —
+        this approach sidesteps that. That said, a few species are genuinely difficult
+        without flowers, and the guides are upfront about where uncertainty remains.`,
   },
   {
     q: 'Does it include indigenous knowledge?',
@@ -53,7 +53,7 @@ const faqs = [
   {
     q: 'I\'ve never been able to identify a tree. Will this actually work for me?',
     a: `It's a reasonable starting point for beginners. The method is step-by-step —
-        bark type first, then fruit — and the photography is detailed enough to compare
+        bark type first, then fruit, buds, and leaves — and the photography is detailed enough to compare
         against what you're looking at. Many people find they can make a plausible
         identification fairly quickly. Some species are more straightforward than others,
         and there will be trees you can't pin down — that's true of any field guide.`,
@@ -100,7 +100,7 @@ const faqs = [
   },
   {
     q: 'Is it actually pocket-sized?',
-    a: `It's compact — 48 pages, softcover — and intended to go in the field with you.
+    a: `It's compact — softcover, under 60 pages — and intended to go in the field with you.
         Whether it fits in a jacket pocket depends a bit on the pocket, but it's designed
         to be light and easy to carry. The photography is reproduced at a useful size
         for field comparison.`,
@@ -124,7 +124,7 @@ const faqs = [
   {
     q: 'How do I buy a copy?',
     a: `Both editions are available directly through this website via secure Stripe checkout —
-        $30 AUD per copy plus $6 postage anywhere in Australia. No account needed.
+        $30 AUD per copy plus $7.50 postage &amp; handling anywhere in Australia. No account needed.
         You can also order either edition through any Australian bookshop using the ISBN,
         or find them at selected retailers including the Australian Koala Foundation.
         Bulk and wholesale orders: email aceguidetoeucalypts@gmail.com.`,
@@ -174,8 +174,8 @@ const faqSchema = {
   <div class="faq-cta">
     <p>Ready to take one into the bush?</p>
     <div class="faq-buttons">
-      <BuyButton text="Buy Melbourne — $36 AUD" href="https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01" external={true} />
-      <BuyButton text="Buy Brisbane — $36 AUD" href="https://buy.stripe.com/4gM6ozcwSguW5m78KhgjC02" external={true} />
+      <BuyButton text="Buy Melbourne — $30 AUD" href="https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01" external={true} />
+      <BuyButton text="Buy Brisbane — $30 AUD" href="https://buy.stripe.com/4gM6ozcwSguW5m78KhgjC02" external={true} />
     </div>
     <p class="faq-secure">Secure checkout via Stripe. No account needed.</p>
   </div>

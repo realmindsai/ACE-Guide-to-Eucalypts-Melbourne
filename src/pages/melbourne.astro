@@ -36,7 +36,7 @@ const bookSchema = {
   ],
   isbn: '9780645232615',
   publisher: { '@type': 'Organization', name: 'ACE Publishing' },
-  description: "A field guide to Melbourne's 36 eucalypt species, identified through bark texture and fruit characteristics.",
+  description: "A field guide to Melbourne's 36 eucalypt species, identified by bark, fruit, bud, and leaf.",
   offers: {
     '@type': 'Offer',
     availability: 'https://schema.org/InStock',
@@ -49,7 +49,7 @@ const bookSchema = {
 
 <Base
   title="ACE Guide to Eucalypts Melbourne — Field Guide to 36 Species"
-  description="A field guide to Melbourne's 36 eucalypt species. Identified through bark and fruit, photographed in intimate detail by Vicky Shukuroglou and Rod Fensham."
+  description="A field guide to Melbourne's 36 eucalypt species. Identified by bark, fruit, bud, and leaf, photographed in intimate detail by Vicky Shukuroglou and Rod Fensham."
   schemaJson={bookSchema}
   breadcrumbs={[{ name: 'Melbourne', href: '/melbourne/' }]}
 >
@@ -70,17 +70,17 @@ const bookSchema = {
         <p class="hero-eyebrow">ACE Guide to Eucalypts</p>
         <h1>Melbourne</h1>
         <p class="hero-subtitle">
-          36 eucalypt species of greater Melbourne — identified through bark and fruit,
-          photographed in intimate detail.
+          36 eucalypt species of greater Melbourne — identified by bark, fruit, bud,
+          and leaf, photographed in intimate detail.
         </p>
         <div class="hero-meta">
           <span>Vicky Shukuroglou &amp; Rod Fensham</span>
           <span class="meta-sep">·</span>
-          <span>Softcover, 48 pp</span>
+          <span>Softcover, 56 pp</span>
           <span class="meta-sep">·</span>
-          <span>$36 AUD inc. postage</span>
+          <span>$30 AUD + $7.50 postage &amp; handling</span>
         </div>
-        <BuyButton text="Buy Now — $36 AUD" href={stripeLink} external={true} />
+        <BuyButton text="Buy Now — $30 AUD" href={stripeLink} external={true} />
         <p class="hero-secure">Secure checkout via Stripe. No account needed.</p>
       </div>
     </div>
@@ -102,7 +102,7 @@ const bookSchema = {
           <Image src={spread13} alt="Interior spread from the ACE Guide showing species photography on a dark background" width={600} loading="lazy" />
         </figure>
         <figure>
-          <Image src={spread31} alt="Interior spread from the ACE Guide showing bark and fruit identification details" width={600} loading="lazy" />
+          <Image src={spread31} alt="Interior spread from the ACE Guide showing bark, fruit, bud, and leaf identification details" width={600} loading="lazy" />
         </figure>
       </div>
     </div>
@@ -160,8 +160,8 @@ const bookSchema = {
           <figcaption>Juvenile leaf <em>(E. fulgens)</em></figcaption>
         </figure>
         <figure>
-          <Image src={goniBud} alt="Bud of Long-flowered Box (Eucalyptus goniocalyx) — a ribbed cap on a slender pedicel" width={500} loading="lazy" />
-          <figcaption>Long-flowered Box bud <em>(E. goniocalyx)</em></figcaption>
+          <Image src={goniBud} alt="Bud of Long-leafed Box (Eucalyptus goniocalyx) — a ribbed cap on a slender pedicel" width={500} loading="lazy" />
+          <figcaption>Long-leafed Box bud <em>(E. goniocalyx)</em></figcaption>
         </figure>
         <figure>
           <Image src={macrFruit} alt="Long woody fruit of Red Stringybark (Eucalyptus macrorhynca) — elongated and ribbed" width={500} loading="lazy" />
@@ -174,15 +174,15 @@ const bookSchema = {
   <!-- How it works -->
   <section class="section method">
     <div class="content-width">
-      <h2>Identified by bark and fruit</h2>
+      <h2>Identified by bark, fruit, bud, and leaf</h2>
       <p>
         The ACE identification method works with what you can see and touch in the field.
-        No need to wait for flowering — bark texture, fruit shape, and leaf form are
-        present year-round and tell you exactly which species you're looking at.
+        No need to wait for flowering — bark texture, fruit shape, bud form, and leaf
+        character are present year-round and tell you exactly which species you're looking at.
       </p>
       <p>
-        Each of Melbourne's 36 species — 32 indigenous, 4 introduced — is covered with
-        notes on habitat, where to find it in Melbourne's parks and reserves, and the
+        Melbourne's 36 species — 32 indigenous and 4 introduced — are covered with
+        notes on habitat, where to find them in Melbourne's parks and reserves, and the
         Aboriginal knowledge and names that connect these trees to Country.
       </p>
     </div>
@@ -205,9 +205,9 @@ const bookSchema = {
   <section class="section final-cta">
     <div class="content-width">
       <h2>Get your copy</h2>
-      <p>$30 AUD + $6 postage anywhere in Australia. Pocket-sized softcover, 48 pages.</p>
+      <p>$30 AUD + $7.50 postage &amp; handling anywhere in Australia. Pocket-sized softcover, 56 pages.</p>
       <p class="cta-isbn">ISBN 9780645232615 — available to order through any bookshop.</p>
-      <BuyButton text="Buy Now — $36 AUD (inc. postage)" href={stripeLink} external={true} />
+      <BuyButton text="Buy Now — $30 AUD" href={stripeLink} external={true} />
       <p class="cta-note">Secure checkout via Stripe. No account needed.</p>
     </div>
   </section>

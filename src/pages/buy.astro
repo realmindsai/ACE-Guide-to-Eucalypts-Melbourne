@@ -28,7 +28,7 @@ const pageSchema = {
         ],
         isbn: '9780645232615',
         publisher: { '@type': 'Organization', name: 'ACE Publishing' },
-        description: "A field guide to Melbourne's 36 eucalypt species, identified through bark texture and fruit characteristics.",
+        description: "A field guide to Melbourne's 36 eucalypt species, identified by bark, fruit, bud, and leaf.",
         offers: {
           '@type': 'Offer',
           availability: 'https://schema.org/InStock',
@@ -49,7 +49,7 @@ const pageSchema = {
         ],
         isbn: '9780645232608',
         publisher: { '@type': 'Organization', name: 'ACE Publishing' },
-        description: "A field guide to Brisbane's 37 eucalypt species, identified through bark texture and fruit characteristics.",
+        description: "A field guide to Brisbane's 37 eucalypt species, identified by bark, fruit, bud, and leaf.",
         offers: {
           '@type': 'Offer',
           availability: 'https://schema.org/InStock',
@@ -63,15 +63,13 @@ const pageSchema = {
 };
 
 const otherRetailers = [
-  { name: 'Australian Koala Foundation', href: 'https://savethekoala.com/shop/products/book-ace-guide-to-eucalypts/' },
-  { name: 'Booktopia', href: '#' },
-  { name: 'Dymocks', href: '#' },
+  { name: 'Australian Koala Foundation (Brisbane edition)', href: 'https://savethekoala.com/shop/products/book-ace-guide-to-eucalypts/' },
 ];
 ---
 
 <Base
   title="Buy the ACE Guide to Eucalypts — Melbourne &amp; Brisbane"
-  description="Purchase the ACE Guide to Eucalypts — Melbourne or Brisbane edition. $30 + postage. Secure Stripe checkout."
+  description="Purchase the ACE Guide to Eucalypts — Melbourne or Brisbane edition. $30 + $7.50 postage &amp; handling. Secure Stripe checkout."
   schemaJson={pageSchema}
   breadcrumbs={breadcrumbs}
 >
@@ -108,7 +106,7 @@ const otherRetailers = [
               <dd>9780645232615</dd>
 
               <dt>Price</dt>
-              <dd>$30 AUD + $6 postage (Australia)</dd>
+              <dd>$30 AUD + $7.50 postage &amp; handling (Australia)</dd>
 
               <dt>Format</dt>
               <dd>Softcover pocket guide</dd>
@@ -116,7 +114,7 @@ const otherRetailers = [
 
             <div class="buy-primary">
               <BuyButton
-                text="Buy Now — $36 AUD (inc. postage)"
+                text="Buy Now — $30 AUD"
                 href={melbourneStripeLink}
                 external={true}
               />
@@ -152,7 +150,7 @@ const otherRetailers = [
               <dd>9780645232608</dd>
 
               <dt>Price</dt>
-              <dd>$30 AUD + $6 postage (Australia)</dd>
+              <dd>$30 AUD + $7.50 postage &amp; handling (Australia)</dd>
 
               <dt>Format</dt>
               <dd>Softcover pocket guide</dd>
@@ -160,7 +158,7 @@ const otherRetailers = [
 
             <div class="buy-primary">
               <BuyButton
-                text="Buy Now — $36 AUD (inc. postage)"
+                text="Buy Now — $30 AUD"
                 href={brisbaneStripeLink}
                 external={true}
               />
