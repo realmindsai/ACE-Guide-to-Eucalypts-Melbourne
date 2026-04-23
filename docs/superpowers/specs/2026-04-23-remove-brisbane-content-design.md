@@ -45,14 +45,14 @@ The site is pivoting to **Melbourne-only**. The Brisbane book is still a real pr
 ### `src/pages/index.astro`
 - Remove `brisbaneCover` import.
 - Rewrite `siteSchema.description`, page `title`, page `description`, and hero subtitle to singular Melbourne framing.
-- Collapse `<div class="books-spread">` from two-card grid to a single centered Melbourne cover (max-width ~360px, `margin-inline: auto`).
+- Inside `<div class="books-spread">`, delete the Brisbane `<a class="book-card">` (the second of two sibling anchors). Collapse the container from a two-card grid to a single centered Melbourne cover (max-width ~360px, `margin-inline: auto`).
 - Remove the `Buy Brisbane` `<BuyButton>`.
 - Remove the "See the Brisbane guide →" link in the method section. Keep the Melbourne link (or drop the `.method-links` div if a single link reads orphaned — implementer's call).
 - CSS: change `.books-spread` from `grid-template-columns: 1fr 1fr` to single centered image; remove the mobile grid `@media` override.
 
 ### `src/pages/buy.astro`
 - Remove `brisbaneCover` import and `brisbaneStripeLink` constant.
-- Remove the Brisbane `ListItem` from `pageSchema.itemListElement`. With only Melbourne remaining, optionally simplify the wrapper from `ItemList` to a bare `Book` schema (either is acceptable).
+- Remove the Brisbane `ListItem` from `pageSchema.itemListElement`. With only Melbourne remaining, optionally simplify the wrapper from `ItemList` to a bare `Book` schema (either is acceptable). If simplifying, clean up any imports or constants that become unused as a result.
 - Delete `otherRetailers` array and the entire `.buy-secondary` "Also available from" block.
 - Page `title`: "Buy the ACE Guide to Eucalypts Melbourne". Page `description`: singular framing.
 - `<h1>`: "Choose your edition" → "Buy the Guide".
@@ -99,6 +99,8 @@ Read every file in `tests/e2e/` and `tests/integration/` and classify:
 - **Dual-book** (asserts nav contains both cities, asserts two buy cards, asserts two book-cards in the hero grid) → update to single-book.
 - **Melbourne-only / generic** → no changes.
 
+Note: dual-book assertions may not mention Brisbane by name — they can be structural (counting nav items, counting `.book-card` elements, expecting `.editions-grid` to have two children). Read assertion logic, not just grep for city names.
+
 ### New assertions to add
 - `/brisbane/` returns 404.
 - Nav contains no "Brisbane" link.
@@ -109,7 +111,7 @@ Read every file in `tests/e2e/` and `tests/integration/` and classify:
 
 ### Pre-commit verification
 - `npm run build` succeeds (no broken imports, no missing routes).
-- Case-insensitive grep for `brisbane` in `src/` returns **only** the mentions in Rod's bio on `authors.astro` and `about.astro`. Any other hit is a miss to fix.
+- Case-insensitive grep for `brisbane` in `src/` returns **only** the mentions in Rod's bio on `authors.astro` and `about.astro`. Any other hit is a miss to fix. (A broader grep for `queensland` will still return Rod's affiliation — University of Queensland / Queensland Herbarium — on both files; those are expected and preserved.)
 - Playwright e2e suite passes.
 - `npm run dev` visual spot-check across home, about, faq, buy, authors, melbourne, and `/brisbane/` (expect 404). Check mobile viewport — the collapsed single-book hero and single-column buy page should not look orphaned.
 
