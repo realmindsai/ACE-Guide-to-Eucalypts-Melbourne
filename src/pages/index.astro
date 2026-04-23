@@ -9,7 +9,6 @@ import BuyButton from '../components/BuyButton.astro';
 import { url } from '../utils/url';
 
 import melbourneCover from '../assets/book-images/melbourne-cover.jpg';
-import brisbaneCover  from '../assets/book-images/brisbane-cover.jpg';
 
 const allEndorsements = await getCollection('endorsements');
 const featured = allEndorsements.filter(e => e.data.featured);
@@ -19,13 +18,13 @@ const siteSchema = {
   '@type': 'WebSite',
   name: 'ACE Guide to Eucalypts',
   url: 'https://realmindsai.github.io/ACE-Guide-to-Eucalypts-Melbourne/',
-  description: 'Pocket field guides to eucalypt species in Melbourne and Brisbane — identified by bark, fruit, bud, and leaf.',
+  description: 'A pocket field guide to Melbourne\'s eucalypt species — identified by bark, fruit, bud, and leaf.',
 };
 ---
 
 <Base
-  title="ACE Guide to Eucalypts — Melbourne &amp; Brisbane"
-  description="Pocket field guides to Melbourne and Brisbane's eucalypt species. Identified by bark, fruit, bud, and leaf, photographed in intimate detail."
+  title="ACE Guide to Eucalypts Melbourne"
+  description="A pocket field guide to Melbourne's eucalypt species. Identified by bark, fruit, bud, and leaf, photographed in intimate detail."
   schemaJson={siteSchema}
 >
 
@@ -36,7 +35,7 @@ const siteSchema = {
         <p class="hero-eyebrow">ACE Guide to Eucalypts</p>
         <h1>Know the trees<br/>around you</h1>
         <p class="hero-subtitle">
-          Pocket field guides to Melbourne and Brisbane's eucalypt species —
+          A pocket field guide to Melbourne's eucalypt species —
           identified by bark, fruit, bud, and leaf, photographed in intimate detail.
         </p>
       </div>
@@ -55,25 +54,10 @@ const siteSchema = {
             <span class="book-species">36 species</span>
           </div>
         </a>
-
-        <a href={url('/brisbane/')} class="book-card">
-          <Image
-            src={brisbaneCover}
-            alt="ACE Guide to Eucalypts Brisbane — softcover field guide"
-            width={320}
-            loading="eager"
-            fetchpriority="high"
-          />
-          <div class="book-label">
-            <span class="book-city">Brisbane</span>
-            <span class="book-species">37 species</span>
-          </div>
-        </a>
       </div>
 
       <div class="hero-cta">
         <BuyButton text="Buy Melbourne — $30 AUD" href="https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01" external={true} />
-        <BuyButton text="Buy Brisbane — $30 AUD" href="https://buy.stripe.com/4gM6ozcwSguW5m78KhgjC02" external={true} />
         <p class="hero-secure">Secure checkout via Stripe. No account needed.</p>
       </div>
     </div>
@@ -109,7 +93,6 @@ const siteSchema = {
       </p>
       <div class="method-links">
         <a href={url('/melbourne/')}>See the Melbourne guide →</a>
-        <a href={url('/brisbane/')}>See the Brisbane guide →</a>
       </div>
     </div>
   </section>
@@ -157,18 +140,8 @@ const siteSchema = {
 
   /* Books spread */
   .books-spread {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-md);
-    max-width: 680px;
+    max-width: 360px;
     margin-inline: auto;
-  }
-
-  @media (max-width: 480px) {
-    .books-spread {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-sm);
-    }
   }
 
   .book-card {
