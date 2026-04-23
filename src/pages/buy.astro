@@ -5,77 +5,42 @@ import Base from '../layouts/Base.astro';
 import BuyButton from '../components/BuyButton.astro';
 
 import melbourneCover from '../assets/book-images/melbourne-cover.jpg';
-import brisbaneCover from '../assets/book-images/brisbane-cover.jpg';
 
 const breadcrumbs = [{ name: 'Buy', href: '/buy/' }];
 
 const melbourneStripeLink = 'https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01';
-const brisbaneStripeLink  = 'https://buy.stripe.com/4gM6ozcwSguW5m78KhgjC02';
 
 const pageSchema = {
   '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      item: {
-        '@type': 'Book',
-        name: 'ACE Guide to Eucalypts Melbourne',
-        author: [
-          { '@type': 'Person', name: 'Vicky Shukuroglou' },
-          { '@type': 'Person', name: 'Roderick Fensham' },
-        ],
-        isbn: '9780645232615',
-        publisher: { '@type': 'Organization', name: 'ACE Publishing' },
-        description: "A field guide to Melbourne's 36 eucalypt species, identified by bark, fruit, bud, and leaf.",
-        offers: {
-          '@type': 'Offer',
-          availability: 'https://schema.org/InStock',
-          priceCurrency: 'AUD',
-          price: '30',
-          url: melbourneStripeLink,
-        },
-      },
-    },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      item: {
-        '@type': 'Book',
-        name: 'ACE Guide to Eucalypts Brisbane',
-        author: [
-          { '@type': 'Person', name: 'Roderick Fensham' },
-        ],
-        isbn: '9780645232608',
-        publisher: { '@type': 'Organization', name: 'ACE Publishing' },
-        description: "A field guide to Brisbane's 37 eucalypt species, identified by bark, fruit, bud, and leaf.",
-        offers: {
-          '@type': 'Offer',
-          availability: 'https://schema.org/InStock',
-          priceCurrency: 'AUD',
-          price: '30',
-          url: brisbaneStripeLink,
-        },
-      },
-    },
+  '@type': 'Book',
+  name: 'ACE Guide to Eucalypts Melbourne',
+  author: [
+    { '@type': 'Person', name: 'Vicky Shukuroglou' },
+    { '@type': 'Person', name: 'Roderick Fensham' },
   ],
+  isbn: '9780645232615',
+  publisher: { '@type': 'Organization', name: 'ACE Publishing' },
+  description: "A field guide to Melbourne's 36 eucalypt species, identified by bark, fruit, bud, and leaf.",
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'AUD',
+    price: '30',
+    url: melbourneStripeLink,
+  },
 };
 
-const otherRetailers = [
-  { name: 'Australian Koala Foundation (Brisbane edition)', href: 'https://savethekoala.com/shop/products/book-ace-guide-to-eucalypts/' },
-];
 ---
 
 <Base
-  title="Buy the ACE Guide to Eucalypts — Melbourne &amp; Brisbane"
-  description="Purchase the ACE Guide to Eucalypts — Melbourne or Brisbane edition. $30 + $7.50 postage &amp; handling. Secure Stripe checkout."
+  title="Buy the ACE Guide to Eucalypts Melbourne"
+  description="Purchase the ACE Guide to Eucalypts Melbourne. $30 + $7.50 postage &amp; handling. Secure Stripe checkout."
   schemaJson={pageSchema}
   breadcrumbs={breadcrumbs}
 >
   <section class="buy-page section">
     <div class="content-width">
-      <h1 class="buy-heading">Choose your edition</h1>
+      <h1 class="buy-heading">Buy the Guide</h1>
 
       <div class="editions-grid">
 
@@ -123,69 +88,12 @@ const otherRetailers = [
           </div>
         </div>
 
-        <!-- Brisbane Edition -->
-        <div class="edition-card">
-          <div class="edition-cover">
-            <a href={brisbaneStripeLink} target="_blank" rel="noopener" aria-label="Buy Brisbane edition on Stripe">
-              <Image
-                src={brisbaneCover}
-                alt="Cover of the ACE Guide to Eucalypts Brisbane"
-                width={360}
-                loading="eager"
-              />
-            </a>
-          </div>
-          <div class="edition-details">
-            <h2>Brisbane</h2>
-            <p class="edition-subtitle">37 eucalypt species of greater Brisbane</p>
-
-            <dl class="book-facts">
-              <dt>Author</dt>
-              <dd>Roderick Fensham</dd>
-
-              <dt>Publisher</dt>
-              <dd>ACE Publishing</dd>
-
-              <dt>ISBN</dt>
-              <dd>9780645232608</dd>
-
-              <dt>Price</dt>
-              <dd>$30 AUD + $7.50 postage &amp; handling (Australia)</dd>
-
-              <dt>Format</dt>
-              <dd>Softcover pocket guide</dd>
-            </dl>
-
-            <div class="buy-primary">
-              <BuyButton
-                text="Buy Now — $30 AUD"
-                href={brisbaneStripeLink}
-                external={true}
-              />
-              <p class="buy-secure">Secure checkout via Stripe. No account needed.</p>
-            </div>
-          </div>
-        </div>
-
       </div><!-- /.editions-grid -->
 
       <!-- Shared info below both cards -->
       <div class="buy-shared">
-        <div class="buy-secondary">
-          <h2>Also available from</h2>
-          <div class="retailer-buttons">
-            {otherRetailers.map(r => (
-              <BuyButton
-                text={r.name}
-                href={r.href}
-                external={true}
-              />
-            ))}
-          </div>
-        </div>
-
         <p class="buy-indie">
-          Or ask your local bookshop — they can order either edition by ISBN.
+          Or ask your local bookshop — they can order it by ISBN.
         </p>
 
         <p class="buy-contact">
@@ -193,7 +101,7 @@ const otherRetailers = [
         </p>
 
         <p class="buy-gift">
-          Know someone who walks in the bush? These make a meaningful gift.
+          Know someone who walks in the bush? It makes a meaningful gift.
         </p>
       </div>
     </div>
@@ -206,17 +114,9 @@ const otherRetailers = [
   }
 
   .editions-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
-    align-items: start;
+    max-width: 640px;
+    margin-inline: auto;
     margin-bottom: var(--space-lg);
-  }
-
-  @media (max-width: 860px) {
-    .editions-grid {
-      grid-template-columns: 1fr;
-    }
   }
 
   .edition-card {
@@ -277,32 +177,6 @@ const otherRetailers = [
   .buy-shared {
     border-top: 1px solid var(--color-text-secondary);
     padding-top: var(--space-md);
-  }
-
-  .buy-secondary {
-    margin-bottom: var(--space-md);
-  }
-
-  .buy-secondary h2 {
-    font-size: 1rem;
-    margin-bottom: var(--space-xs);
-    color: var(--color-text-secondary);
-  }
-
-  .retailer-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-  }
-
-  .retailer-buttons :global(.buy-button) {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
-    background-color: var(--color-text-secondary);
-  }
-
-  .retailer-buttons :global(.buy-button:hover) {
-    background-color: var(--color-text);
   }
 
   .buy-indie {
