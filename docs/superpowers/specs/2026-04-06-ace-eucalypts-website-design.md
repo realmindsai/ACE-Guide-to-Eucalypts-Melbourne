@@ -1,3 +1,10 @@
+> **Note (2026-04-23):** Brisbane content has been removed from the live site.
+> This document is preserved as a historical record of the original dual-book design.
+> For the current single-book design, see
+> `docs/superpowers/specs/2026-04-23-remove-brisbane-content-design.md`.
+
+---
+
 # ACE Guide to Eucalypts Melbourne — Website Design Specification
 
 **Project**: Book website for *ACE Guide to Eucalypts Melbourne*
