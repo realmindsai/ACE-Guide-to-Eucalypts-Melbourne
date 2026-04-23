@@ -1,9 +1,5 @@
 ---
 // src/components/Footer.astro
-const retailers = [
-  { name: 'Australian Koala Foundation (Brisbane edition)', href: 'https://savethekoala.com/shop/products/book-ace-guide-to-eucalypts/' },
-];
-
 const currentYear = new Date().getFullYear();
 ---
 
@@ -11,11 +7,7 @@ const currentYear = new Date().getFullYear();
   <div class="footer-inner content-width">
     <div class="footer-buy">
       <h2>Get the Book</h2>
-      <ul role="list">
-        {retailers.map(r => (
-          <li><a href={r.href} target="_blank" rel="noopener">{r.name}</a></li>
-        ))}
-      </ul>
+      <p><a href="/buy/">Buy the guide</a></p>
       <p class="footer-indie">Or ask your local bookshop.</p>
     </div>
 
@@ -45,17 +37,6 @@ const currentYear = new Date().getFullYear();
   .footer-buy h2 {
     font-size: 1.125rem;
     margin-bottom: var(--space-xs);
-  }
-
-  .footer-buy ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs) var(--space-sm);
-  }
-
-  .footer-buy a {
-    font-size: 0.9rem;
   }
 
   .footer-indie {
