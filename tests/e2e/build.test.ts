@@ -28,5 +28,6 @@ test.describe('Build output', () => {
   test('does not generate removed pages', () => {
     expect(existsSync('dist/identify/index.html')).toBe(false);
     expect(existsSync('dist/species/index.html')).toBe(false);
+    expect(existsSync('dist/brisbane/index.html')).toBe(false);
   });
 });

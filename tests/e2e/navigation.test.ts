@@ -32,7 +32,21 @@ test.describe('Navigation', () => {
   });
 
   test('removed pages return 404', async ({ page }) => {
-    const response = await page.goto('/species/');
-    expect(response?.status()).toBe(404);
+    const speciesResponse = await page.goto('/species/');
+    expect(speciesResponse?.status()).toBe(404);
+
+    const brisbaneResponse = await page.goto('/brisbane/');
+    expect(brisbaneResponse?.status()).toBe(404);
+  });
+
+  test('nav and footer contain no Brisbane references', async ({ page }) => {
+    await page.goto('/');
+
+    const navText = await page.locator('nav').textContent();
+    expect(navText?.toLowerCase()).not.toContain('brisbane');
+
+    const footerText = await page.locator('body > footer').textContent();
+    expect(footerText?.toLowerCase()).not.toContain('brisbane');
+    expect(footerText?.toLowerCase()).not.toContain('koala foundation');
   });
 });

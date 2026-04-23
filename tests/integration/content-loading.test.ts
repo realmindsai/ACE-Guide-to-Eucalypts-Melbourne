@@ -25,4 +25,24 @@ test.describe('Content loads correctly', () => {
     const stripeLink = page.locator('a[href*="stripe.com"]');
     await expect(stripeLink).toBeVisible();
   });
+
+  test('index hero renders exactly one book card', async ({ page }) => {
+    await page.goto('/');
+    const bookCards = page.locator('.books-spread .book-card');
+    await expect(bookCards).toHaveCount(1);
+  });
+
+  test('buy page renders exactly one edition card', async ({ page }) => {
+    await page.goto('/buy/');
+    const editionCards = page.locator('.editions-grid .edition-card');
+    await expect(editionCards).toHaveCount(1);
+  });
+
+  test('FAQ contains no Brisbane edition references', async ({ page }) => {
+    await page.goto('/faq/');
+    const bodyText = (await page.locator('body').textContent())?.toLowerCase() ?? '';
+    expect(bodyText).not.toContain('brisbane edition');
+    expect(bodyText).not.toContain('jagera');
+    expect(bodyText).not.toContain('turrbal');
+  });
 });
