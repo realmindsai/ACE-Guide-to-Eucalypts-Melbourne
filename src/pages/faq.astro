@@ -20,10 +20,7 @@ const faqs = [
     a: `The Melbourne edition covers the greater Melbourne region — broadly from the Dandenong
         Ranges in the east toward the Otway foothills, including many of Melbourne's parks
         and bushland reserves. If you're on the urban fringe or in a less common habitat type,
-        you may occasionally encounter species not covered.
-
-        The Brisbane edition focuses on greater Brisbane's bushland reserves, with a map
-        and quick-reference list to help you find particular species. Coverage varies by area.`,
+        you may occasionally encounter species not covered.`,
   },
   {
     q: 'Does it include a species key?',
@@ -44,9 +41,8 @@ const faqs = [
   {
     q: 'Does it include indigenous knowledge?',
     a: `Yes, where it was available to include. Species entries acknowledge Aboriginal
-        knowledge connected to that species and include names in local language —
-        Wurundjeri Woi-wurrung and Bunurong/Boon Wurrung for Melbourne, local Jagera
-        and Turrbal language names for Brisbane. The guides recognise that these trees
+        knowledge connected to that species and include names in Wurundjeri Woi-wurrung
+        and Bunurong/Boon Wurrung language. The guide recognises that these trees
         have been known, named, and used by Aboriginal people for a very long time,
         though the coverage of this knowledge varies by species.`,
   },
@@ -91,14 +87,6 @@ const faqs = [
         a comprehensive ecological reference.`,
   },
   {
-    q: 'What\'s the difference between the Melbourne and Brisbane editions?',
-    a: `They cover different regions and largely different species — 36 for Melbourne
-        (32 indigenous, 4 introduced) and 37 for Brisbane (36 local, 1 naturalised).
-        The Melbourne edition was co-authored by Vicky Shukuroglou and Rod Fensham;
-        the Brisbane edition is by Rod Fensham alone. Both use the same ACE identification
-        method and similar format. There's some species overlap between regions.`,
-  },
-  {
     q: 'Is it actually pocket-sized?',
     a: `It's compact — softcover, under 60 pages — and intended to go in the field with you.
         Whether it fits in a jacket pocket depends a bit on the pocket, but it's designed
@@ -123,10 +111,9 @@ const faqs = [
   },
   {
     q: 'How do I buy a copy?',
-    a: `Both editions are available directly through this website via secure Stripe checkout —
+    a: `The guide is available directly through this website via secure Stripe checkout —
         $30 AUD per copy plus $7.50 postage &amp; handling anywhere in Australia. No account needed.
-        You can also order either edition through any Australian bookshop using the ISBN,
-        or find them at selected retailers including the Australian Koala Foundation.
+        You can also order through any Australian bookshop using the ISBN.
         Bulk and wholesale orders: email aceguidetoeucalypts@gmail.com.`,
   },
 ];
@@ -147,7 +134,7 @@ const faqSchema = {
 
 <Page
   title="FAQ — ACE Guide to Eucalypts"
-  description="Frequently asked questions about the ACE Guide to Eucalypts — Melbourne and Brisbane editions. Do you need botanical knowledge? Does it cover your suburb? Does it include indigenous knowledge?"
+  description="Frequently asked questions about the ACE Guide to Eucalypts Melbourne. Do you need botanical knowledge? Does it cover your suburb? Does it include indigenous knowledge?"
   schemaJson={faqSchema}
   breadcrumbs={breadcrumbs}
 >
@@ -175,7 +162,6 @@ const faqSchema = {
     <p>Ready to take one into the bush?</p>
     <div class="faq-buttons">
       <BuyButton text="Buy Melbourne — $30 AUD" href="https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01" external={true} />
-      <BuyButton text="Buy Brisbane — $30 AUD" href="https://buy.stripe.com/4gM6ozcwSguW5m78KhgjC02" external={true} />
     </div>
     <p class="faq-secure">Secure checkout via Stripe. No account needed.</p>
   </div>
