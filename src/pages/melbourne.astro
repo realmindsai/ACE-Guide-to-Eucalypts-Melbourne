@@ -14,7 +14,7 @@ import spread31     from '../assets/book-images/melbourne-spread-31.jpg';
 import bark         from '../assets/book-images/melliodora-bark.jpg';
 import globBud      from '../assets/book-images/globoidea-bud.jpg';
 import camFruit     from '../assets/book-images/camaldulensis-fruit.jpg';
-import fulgsLeaf    from '../assets/book-images/fulgens-leaf.jpg';
+import goniLeafJuv  from '../assets/book-images/goniocalyx-leaf-juv.jpg';
 import goniBud      from '../assets/book-images/goniocalyx-bud.jpg';
 import macrFruit    from '../assets/book-images/macrorhynca-fruit.jpg';
 
@@ -145,8 +145,8 @@ const bookSchema = {
           <figcaption>White Stringybark buds <em>(E. globoidea)</em></figcaption>
         </figure>
         <figure class="leaf-crop">
-          <Image src={fulgsLeaf} alt="Juvenile leaves of Peppermint (Eucalyptus fulgens) — broad and blue-green, clasping the stem" width={500} loading="lazy" />
-          <figcaption>Juvenile leaf <em>(E. fulgens)</em></figcaption>
+          <Image src={goniLeafJuv} alt="Juvenile leaf of Long-leafed Box (Eucalyptus goniocalyx) — broad and softly veined" width={500} loading="lazy" />
+          <figcaption>Juvenile leaf <em>(E. goniocalyx)</em></figcaption>
         </figure>
         <figure>
           <Image src={macrFruit} alt="Long woody fruit of Red Stringybark (Eucalyptus macrorhynca) — elongated and ribbed" width={500} loading="lazy" />
@@ -161,14 +161,15 @@ const bookSchema = {
     <div class="content-width">
       <h2>Identified by bark, fruit, bud, and leaf</h2>
       <p>
-        The ACE identification method works with what you can see and touch in the field.
-        No need to wait for flowering — bark texture, fruit shape, bud form, and leaf
-        character are present year-round and tell you exactly which species you're looking at.
+        The guide's identification method works with what you can see and touch in the
+        field. Bark texture, fruit shape, bud form, and leaf character are combined
+        to tell you which species you're looking at.
       </p>
       <p>
-        Melbourne's 36 species — 32 indigenous and 4 introduced — are covered with
-        notes on habitat, where to find them in Melbourne's parks and reserves, and the
-        Aboriginal knowledge and names that connect these trees to Country.
+        Melbourne's species — 32 indigenous and 4 of the introduced — each have a
+        profile page with life size photos. Accompanying maps and notes with details
+        about distinguishing features, habitat, parks and reserves, help paint a
+        clearer picture.
       </p>
     </div>
   </section>
@@ -227,7 +228,7 @@ const bookSchema = {
 
   .hero-cover img {
     width: 100%;
-    border-radius: 4px;
+    border-radius: 0;
     box-shadow: 0 6px 32px rgba(44, 44, 42, 0.2);
   }
 
@@ -304,7 +305,7 @@ const bookSchema = {
 
   .spreads-grid img {
     width: 100%;
-    border-radius: 4px;
+    border-radius: 0;
     display: block;
   }
 
@@ -364,7 +365,7 @@ const bookSchema = {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 0;
     display: block;
   }
 
