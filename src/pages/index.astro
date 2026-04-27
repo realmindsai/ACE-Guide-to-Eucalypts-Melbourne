@@ -9,6 +9,7 @@ import BuyButton from '../components/BuyButton.astro';
 import { url } from '../utils/url';
 
 import melbourneCover from '../assets/book-images/melbourne-cover.jpg';
+import walksBandImage from '../assets/walks/group-listening.jpg';
 
 const allEndorsements = await getCollection('endorsements');
 const featured = allEndorsements.filter(e => e.data.featured);
@@ -77,6 +78,29 @@ const siteSchema = {
       </div>
     </section>
   )}
+
+  <!-- Walks band -->
+  <section class="section walks-band">
+    <div class="wide-width walks-band-inner">
+      <div class="walks-band-image">
+        <Image
+          src={walksBandImage}
+          alt="A group on a guided walk, listening as Vicky points out details of a eucalypt"
+          width={640}
+          loading="lazy"
+        />
+      </div>
+      <div class="walks-band-text">
+        <h2>Walks with Vicky</h2>
+        <p>
+          Step into the world of eucalypts and discover Melbourne through its most iconic trees.
+        </p>
+        <p>
+          <a href={url('/walks/')} class="buy-button">Book a walk</a>
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- What the ACE method is -->
   <section class="section method">
@@ -193,6 +217,39 @@ const siteSchema = {
     font-size: 0.8rem;
     color: var(--color-text-secondary);
     margin: 0;
+  }
+
+  /* Walks band */
+  .walks-band {
+    padding-block: var(--space-lg);
+  }
+
+  .walks-band-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  @media (min-width: 720px) {
+    .walks-band-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .walks-band-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 4px 20px rgba(44, 44, 42, 0.15);
+  }
+
+  .walks-band-text h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .walks-band-text p {
+    margin-bottom: var(--space-sm);
   }
 
   /* Method section */
