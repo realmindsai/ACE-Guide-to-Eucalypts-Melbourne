@@ -14,7 +14,7 @@ for (const vp of viewports) {
       await page.goto('/');
       const navLinks = page.locator('.nav-links a');
       const count = await navLinks.count();
-      expect(count).toBe(4);
+      expect(count).toBe(6);
       for (let i = 0; i < count; i++) {
         await expect(navLinks.nth(i)).toBeVisible();
       }
