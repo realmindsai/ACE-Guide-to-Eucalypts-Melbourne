@@ -1,0 +1,27 @@
+<!--
+  Static form for Netlify Forms detection.
+
+  Netlify scans deployed HTML for <form data-netlify="true"> at build time.
+  Astro components occasionally produce HTML the parser misses on first deploy,
+  so this duplicate static form guarantees detection. The real form is in
+  src/components/EnquiryForm.astro and is what users actually submit.
+
+  Field set must match the real form so Netlify accepts the live submissions.
+-->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Netlify form detection</title></head>
+<body>
+<form name="walk-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="walk-enquiry" />
+  <input name="bot-field" />
+  <input name="name" type="text" />
+  <input name="email" type="email" />
+  <input name="phone" type="tel" />
+  <input name="group_size" type="text" />
+  <input name="preferred_location" type="text" />
+  <input name="preferred_dates" type="text" />
+  <textarea name="message"></textarea>
+</form>
+</body>
+</html>
