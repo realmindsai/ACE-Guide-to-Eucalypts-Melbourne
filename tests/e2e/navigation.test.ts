@@ -1,14 +1,16 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Navigation', () => {
-  test('all 4 nav links are visible and work', async ({ page }) => {
+  test('all nav links are visible and work', async ({ page }) => {
     await page.goto('/');
 
     const navLinks = [
-      { text: 'Home', href: '/' },
-      { text: 'About', href: '/about/' },
-      { text: 'Authors', href: '/authors/' },
-      { text: 'Buy', href: '/buy/' },
+      { text: 'Home',    href: '/' },
+      { text: 'The Book', href: '/melbourne/' },
+      { text: 'Walks',   href: '/walks/' },
+      { text: 'About',   href: '/about/' },
+      { text: 'FAQ',     href: '/faq/' },
+      { text: 'Buy',     href: '/buy/' },
     ];
 
     for (const link of navLinks) {
@@ -18,10 +20,10 @@ test.describe('Navigation', () => {
     }
   });
 
-  test('logo links to home', async ({ page }) => {
+  test('logo text is present', async ({ page }) => {
     await page.goto('/about/');
     const logo = page.locator('.nav-logo');
-    await expect(logo).toHaveAttribute('href', '/');
+    await expect(logo).toHaveText('ACE Guide to Eucalypts Melbourne');
   });
 
   test('buy buttons link to buy page or Stripe', async ({ page }) => {
