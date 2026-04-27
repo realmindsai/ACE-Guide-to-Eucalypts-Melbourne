@@ -1,0 +1,39 @@
+---
+// src/pages/walks/thanks.astro
+import Base from '../../layouts/Base.astro';
+import { url } from '../../utils/url';
+---
+
+<Base
+  title="Thanks — your walk enquiry is on its way"
+  description="Your guided eucalypt walk enquiry has been received."
+  breadcrumbs={[
+    { name: 'Walks', href: '/walks/' },
+    { name: 'Thanks', href: '/walks/thanks/' },
+  ]}
+>
+  <section class="section">
+    <div class="content-width">
+      <h1>Thanks — your enquiry is on its way</h1>
+      <p>
+        Vicky will be in touch within a few days to discuss your walk. If it's urgent,
+        you can also email <a href="mailto:info@eucalyptsmelbourne.au">info@eucalyptsmelbourne.au</a>.
+      </p>
+      <p>
+        <a href={url('/walks/')}>← Back to Walks</a>
+        &nbsp;·&nbsp;
+        <a href={url('/')}>Home</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .section {
+    padding-block: var(--space-lg);
+  }
+
+  .section h1 {
+    margin-bottom: var(--space-sm);
+  }
+</style>

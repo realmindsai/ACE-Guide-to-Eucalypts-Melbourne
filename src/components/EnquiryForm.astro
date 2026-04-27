@@ -1,0 +1,133 @@
+---
+// src/components/EnquiryForm.astro
+// Netlify-handled enquiry form. The form is auto-detected at deploy time
+// because of the data-netlify and name attributes on the static HTML form.
+---
+
+<form
+  name="walk-enquiry"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action="/walks/thanks/"
+  class="enquiry-form"
+>
+  <input type="hidden" name="form-name" value="walk-enquiry" />
+
+  <p class="hp-field" hidden>
+    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+  </p>
+
+  <div class="field">
+    <label for="enquiry-name">Name <span aria-hidden="true">*</span></label>
+    <input id="enquiry-name" name="name" type="text" required autocomplete="name" />
+  </div>
+
+  <div class="field">
+    <label for="enquiry-email">Email <span aria-hidden="true">*</span></label>
+    <input id="enquiry-email" name="email" type="email" required autocomplete="email" />
+  </div>
+
+  <div class="field">
+    <label for="enquiry-phone">Phone <span class="optional">(optional)</span></label>
+    <input id="enquiry-phone" name="phone" type="tel" autocomplete="tel" />
+  </div>
+
+  <div class="field">
+    <label for="enquiry-group-size">Group size</label>
+    <input id="enquiry-group-size" name="group_size" type="number" min="1" max="30" />
+  </div>
+
+  <div class="field">
+    <label for="enquiry-location">Preferred location</label>
+    <select id="enquiry-location" name="preferred_location">
+      <option value="">— Choose one —</option>
+      <option>Pound Bend (Warrandyte)</option>
+      <option>Long Forest, Bacchus Marsh</option>
+      <option>Blackburn Lake</option>
+      <option>Royal Park</option>
+      <option>Royal Botanic Gardens</option>
+      <option>Other / not sure</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="enquiry-dates">Preferred dates</label>
+    <input
+      id="enquiry-dates"
+      name="preferred_dates"
+      type="text"
+      placeholder="e.g. weekends in May"
+    />
+  </div>
+
+  <div class="field">
+    <label for="enquiry-message">What are you hoping to get from the walk?</label>
+    <textarea id="enquiry-message" name="message" rows="5"></textarea>
+  </div>
+
+  <button type="submit" class="buy-button">Send enquiry</button>
+
+  <p class="enquiry-fallback">
+    Prefer email? Reach Vicky at
+    <a href="mailto:info@eucalyptsmelbourne.au">info@eucalyptsmelbourne.au</a>.
+  </p>
+</form>
+
+<style>
+  .enquiry-form {
+    display: grid;
+    gap: var(--space-sm);
+    max-width: 36rem;
+  }
+
+  .hp-field {
+    position: absolute;
+    left: -10000px;
+  }
+
+  .field {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .field label {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .field .optional {
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font: inherit;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-olive);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border-radius: 0;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 6rem;
+  }
+
+  .enquiry-form button {
+    justify-self: start;
+    margin-top: var(--space-sm);
+    border: none;
+    cursor: pointer;
+  }
+
+  .enquiry-fallback {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+</style>
