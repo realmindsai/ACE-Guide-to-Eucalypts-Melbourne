@@ -232,3 +232,21 @@ These are not code, but the work is incomplete without them:
 ## Open questions for implementation
 
 None blocking. The implementation plan can proceed.
+
+---
+
+## Implementation status (2026-04-27)
+
+Code complete on `main`. The following must be done **after** the first deploy lands on Netlify:
+
+1. ☐ Netlify dashboard → Forms → `walk-enquiry` → enable email notifications to `info@eucalyptsmelbourne.au`
+2. ☐ Submit a test enquiry on the deploy preview to confirm email delivery
+3. ☐ Confirm `info@eucalyptsmelbourne.au` mailbox is monitored
+4. ☐ Decide per-person pricing before the "PPP coming soon" line gets stale (review 2026-Q3)
+
+### Pre-existing test failures observed but not fixed (out of spec scope)
+
+These were failing on `main` before this work; they are noted here so a follow-up can address them:
+
+- `tests/e2e/a11y.test.ts` home page: `.method-links a` contrast 4.49:1 (needs 4.5:1) — terracotta `--color-cta` on `#f0ebe4` cream alt-section background. Fix by darkening `--color-cta` slightly or lightening the alt-section background.
+- `tests/integration/content-loading.test.ts`: asserts `.showcase-grid figure` and a single `a[href*="stripe.com"]` on home/buy. The site has since simplified — the showcase grid was removed and the buy page now has 2 stripe links. Update assertions to match current structure.
