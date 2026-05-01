@@ -1,0 +1,31 @@
+---
+// src/pages/contact.astro
+import Base from '../layouts/Base.astro';
+import ContactForm from '../components/ContactForm.astro';
+import AcknowledgmentOfCountry from '../components/AcknowledgmentOfCountry.astro';
+---
+
+<Base
+  title="Contact — ACE Guide to Eucalypts Melbourne"
+  description="Get in touch with the authors and team behind the ACE Guide to Eucalypts Melbourne."
+  breadcrumbs={[{ name: 'Contact', href: '/contact/' }]}
+>
+  <section class="section">
+    <div class="content-width">
+      <h1>Contact</h1>
+      <p>
+        For general enquiries, questions about the book, or to share your feedback,
+        please use the form below. We'd love to hear from you.
+      </p>
+      <ContactForm />
+    </div>
+  </section>
+
+  <AcknowledgmentOfCountry />
+</Base>
+
+<style>
+  .section {
+    padding-block: var(--space-lg);
+  }
+</style>

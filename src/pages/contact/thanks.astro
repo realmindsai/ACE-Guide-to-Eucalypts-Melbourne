@@ -1,0 +1,38 @@
+---
+// src/pages/contact/thanks.astro
+import Base from '../../layouts/Base.astro';
+import { url } from '../../utils/url';
+---
+
+<Base
+  title="Thank You — ACE Guide to Eucalypts Melbourne"
+  description="Your message has been received."
+  breadcrumbs={[
+    { name: 'Contact', href: '/contact/' },
+    { name: 'Thanks', href: '/contact/thanks/' },
+  ]}
+>
+  <section class="section">
+    <div class="content-width">
+      <h1>Thank you for your message</h1>
+      <p>
+        We've received your enquiry and will get back to you as soon as we can.
+      </p>
+      <p>
+        <a href={url('/contact/')}>← Back to Contact</a>
+        &nbsp;·&nbsp;
+        <a href={url('/')}>Home</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .section {
+    padding-block: var(--space-lg);
+  }
+
+  .section h1 {
+    margin-bottom: var(--space-sm);
+  }
+</style>
