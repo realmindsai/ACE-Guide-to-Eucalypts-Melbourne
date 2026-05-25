@@ -47,11 +47,11 @@ const pageSchema = {
         <!-- Melbourne Edition -->
         <div class="edition-card">
           <div class="edition-cover">
-            <a href={melbourneStripeLink} target="_blank" rel="noopener" aria-label="Buy Melbourne edition on Stripe">
+            <a href={melbourneStripeLink} target="_blank" rel="noopener" aria-label="Buy the book on Stripe">
               <Image
                 src={melbourneCover}
                 alt="Cover of the ACE Guide to Eucalypts Melbourne — eucalypt bark peeling in layers of grey, white, and rust"
-                width={360}
+                width={320}
                 loading="eager"
               />
             </a>
@@ -123,6 +123,11 @@ const pageSchema = {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+  }
+
+  .edition-cover {
+    max-width: 320px;
+    margin-inline: auto;
   }
 
   .edition-cover a {

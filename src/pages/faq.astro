@@ -18,9 +18,19 @@ const faqs = [
   },
   {
     q: 'Does the guide cover my suburb?',
-    a: `The Melbourne edition covers the greater Melbourne region — broadly from the Dandenong
-        Ranges in the east toward the Otway foothills, including many of Melbourne's parks
-        and bushland reserves.`,
+    a: `The Melbourne edition covers the greater Melbourne region — broadly the area defined by the
+        Australian Bureau of Statistics as Greater Melbourne. That stretches from the Mornington
+        Peninsula in the south, through the bayside suburbs and the city, east into the
+        Dandenong Ranges and the upper Yarra Valley beyond Warburton, north to just past
+        Wandong and Lancefield, and out to the western plains around Melton and Werribee.
+
+        You'll find the species featured in many of the region's well-known parks and reserves —
+        Royal Park, the Royal Botanic Gardens, Yarra Bend, Plenty Gorge, the Dandenong Ranges
+        and Yarra Ranges national parks, and Mornington Peninsula National Park among them.
+
+        The more you come to know any eucalypt, the more you start to see each individual's
+        detail — the way the bark grips or peels, the particular shape of fruit, the colour
+        of juvenile growth.`,
   },
   {
     q: 'Does it include a species key?',
@@ -110,7 +120,7 @@ const faqs = [
     a: `The guide is available directly through this website via secure Stripe checkout —
         $30 AUD per copy plus $7.50 postage &amp; handling anywhere in Australia. No account needed.
         You can also order through any Australian bookshop using the ISBN.
-        Bulk and wholesale orders: email info@eucalyptsmelbourne.au.`,
+        Bulk and wholesale orders: email <a href="mailto:info@eucalyptsmelbourne.au">info@eucalyptsmelbourne.au</a>.`,
   },
 ];
 
@@ -157,7 +167,7 @@ const faqSchema = {
   <div class="faq-cta">
     <p>Ready to take one into the bush?</p>
     <div class="faq-buttons">
-      <BuyButton text="Buy Melbourne — $30 AUD" href="https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01" external={true} />
+      <BuyButton text="Buy the Book — $30 AUD" href="https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01" external={true} />
     </div>
     <p class="faq-secure">Secure checkout via Stripe. No account needed.</p>
   </div>
