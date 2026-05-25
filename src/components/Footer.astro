@@ -1,13 +1,16 @@
 ---
 // src/components/Footer.astro
 const currentYear = new Date().getFullYear();
+const isBuyPage = Astro.url.pathname === '/buy/' || Astro.url.pathname === '/buy';
 ---
 
 <footer>
   <div class="footer-inner content-width">
-    <div class="footer-buy">
-      <p><a href="/buy/">Buy the guide</a> · Or ask your local bookshop.</p>
-    </div>
+    {!isBuyPage && (
+      <div class="footer-buy">
+        <p><a href="/buy/">Buy the guide</a> · Or ask your local bookshop.</p>
+      </div>
+    )}
 
     <div class="footer-meta">
       <p>&copy; 2026 Vicky Shukuroglou &amp; Roderick Fensham. All rights reserved.</p>
