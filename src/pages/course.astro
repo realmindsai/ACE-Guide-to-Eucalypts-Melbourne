@@ -49,7 +49,8 @@ const pillars = [
   breadcrumbs={breadcrumbs}
 >
 
-  <!-- Hero — image left (small), info + prominent buttons right -->
+  <!-- Hero: image + heading + prominent download button + meta.
+       Grid areas reorder for mobile so the button sits between image and text. -->
   <section class="hero">
     <div class="hero-inner content-width">
       <div class="hero-cover">
@@ -60,27 +61,24 @@ const pillars = [
           fetchpriority="high"
         />
       </div>
-      <div class="hero-text">
+      <div class="hero-heading">
         <h1>Eucalypt Identification &amp; Ecology</h1>
         <p class="hero-subtitle">
           Interactive classroom sessions and guided field experience across Melbourne's
           diverse landscapes — suitable for all levels of knowledge.
         </p>
-        <div class="hero-meta">
-          <span>With <strong>Vicky Shukuroglou</strong> &amp; <strong>Karl Just</strong></span>
-          <span class="meta-sep">·</span>
-          <span>Four Saturdays, October &amp; November 2026</span>
-          <span class="meta-sep">·</span>
-          <span>$900 · Limited places</span>
-        </div>
-        <div class="hero-buttons">
-          <a class="buy-button buy-button-large" href={enquiryHref}>
-            Enquire and register
-          </a>
-          <a class="buy-button buy-button-large buy-button-secondary" href={infoPdfHref} target="_blank" rel="noopener">
-            Download full info (PDF)
-          </a>
-        </div>
+      </div>
+      <div class="hero-button">
+        <a class="buy-button buy-button-large" href={infoPdfHref} target="_blank" rel="noopener">
+          Download full course info (PDF)
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span>With <strong>Vicky Shukuroglou</strong> &amp; <strong>Karl Just</strong></span>
+        <span class="meta-sep">·</span>
+        <span>Four Saturdays, October &amp; November 2026</span>
+        <span class="meta-sep">·</span>
+        <span>$900 · Limited places</span>
       </div>
     </div>
   </section>
@@ -119,25 +117,40 @@ const pillars = [
 </Base>
 
 <style>
-  /* Hero — mirrors melbourne.astro book page */
+  /* Hero — uses grid-template-areas so the button reorders between
+     desktop and mobile without duplicating markup. */
   .hero {
     padding-block: var(--space-lg);
   }
 
   .hero-inner {
     display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: var(--space-lg);
-    align-items: center;
+    grid-template-columns: 300px 1fr;
+    grid-template-areas:
+      "cover heading"
+      "cover button"
+      "cover meta";
+    gap: var(--space-sm) var(--space-lg);
+    align-items: start;
   }
+
+  .hero-cover   { grid-area: cover; align-self: center; }
+  .hero-heading { grid-area: heading; }
+  .hero-button  { grid-area: button; }
+  .hero-meta    { grid-area: meta; }
 
   @media (max-width: 700px) {
     .hero-inner {
       grid-template-columns: 1fr;
+      grid-template-areas:
+        "cover"
+        "button"
+        "heading"
+        "meta";
       text-align: center;
     }
     .hero-cover {
-      max-width: 260px;
+      max-width: 300px;
       margin-inline: auto;
     }
   }
@@ -149,7 +162,7 @@ const pillars = [
     box-shadow: 0 6px 32px rgba(44, 44, 42, 0.2);
   }
 
-  .hero-text h1 {
+  .hero-heading h1 {
     margin-bottom: var(--space-sm);
   }
 
@@ -157,13 +170,12 @@ const pillars = [
     font-size: 1.15rem;
     line-height: 1.6;
     color: var(--color-text-secondary);
-    margin-bottom: var(--space-md);
+    margin: 0;
   }
 
   .hero-meta {
     font-size: 0.95rem;
     color: var(--color-text-secondary);
-    margin-bottom: var(--space-md);
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem 0;
@@ -179,33 +191,28 @@ const pillars = [
     color: var(--color-olive);
   }
 
-  /* Prominent buttons */
-  .hero-buttons {
+  /* Prominent solid button */
+  .hero-button {
+    margin-top: var(--space-xs);
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-sm);
-    margin-top: var(--space-sm);
   }
 
   @media (max-width: 700px) {
-    .hero-buttons { justify-content: center; }
+    .hero-button { justify-content: center; }
   }
 
   .buy-button-large {
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
+    font-size: 1.15rem;
+    padding: 1rem 2.25rem;
     min-height: 56px;
+    box-shadow: 0 4px 14px rgba(184, 96, 60, 0.25);
   }
 
-  .buy-button-secondary {
-    background-color: transparent;
-    color: var(--color-cta);
-    border: 2px solid var(--color-cta);
-  }
-
-  .buy-button-secondary:hover {
-    background-color: var(--color-cta);
-    color: var(--color-bg);
+  .buy-button-large:hover {
+    box-shadow: 0 6px 20px rgba(184, 96, 60, 0.35);
+    transform: translateY(-1px);
   }
 
   /* Pillars — leaf motif */

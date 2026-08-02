@@ -36,45 +36,48 @@ const siteSchema = {
 
       <div class="offer-grid">
 
-        <!-- The Book -->
-        <a href={url('/melbourne/')} class="offer-card">
-          <div class="offer-body">
-            <h2 class="offer-label">The Book</h2>
-            <p class="offer-desc">A pocket field guide to Melbourne's eucalypt species — identified by bark, fruit, bud, and leaf, photographed in intimate detail.</p>
+        <!-- The Book column: card + buy button under it -->
+        <div class="offer-column">
+          <a href={url('/melbourne/')} class="offer-card">
+            <div class="offer-body">
+              <h2 class="offer-label">The Book</h2>
+              <p class="offer-desc">A pocket field guide to Melbourne's eucalypt species — identified by bark, fruit, bud, and leaf, photographed in intimate detail.</p>
+            </div>
+            <div class="offer-image">
+              <Image
+                src={melbourneCover}
+                alt="ACE Guide to Eucalypts Melbourne — softcover field guide"
+                width={320}
+                loading="eager"
+                fetchpriority="high"
+              />
+            </div>
+            <span class="offer-cta">Read more &rarr;</span>
+          </a>
+          <div class="offer-buy">
+            <BuyButton text="Buy the Book — $30 AUD" href="https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01" external={true} />
+            <p class="hero-secure">Secure checkout via Stripe. No account needed.</p>
           </div>
-          <div class="offer-image">
-            <Image
-              src={melbourneCover}
-              alt="ACE Guide to Eucalypts Melbourne — softcover field guide"
-              width={320}
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-          <span class="offer-cta">Read more &rarr;</span>
-        </a>
+        </div>
 
-        <!-- The Course -->
-        <a href={url('/course/')} class="offer-card">
-          <div class="offer-body">
-            <h2 class="offer-label">The Course</h2>
-            <p class="offer-desc">Eucalypt Identification &amp; Ecology — an immersive 4-day course with Vicky Shukuroglou &amp; Karl Just. Classroom sessions and field trips across Melbourne's landscapes.</p>
-          </div>
-          <div class="offer-image">
-            <img
-              src="/images/course/course-flyer-cover.jpg"
-              alt="Eucalypt Identification & Ecology — Immersive 4-day course with Vicky Shukuroglou and Karl Just"
-              loading="eager"
-            />
-          </div>
-          <span class="offer-cta">Course info and bookings &rarr;</span>
-        </a>
+        <!-- The Course column -->
+        <div class="offer-column">
+          <a href={url('/course/')} class="offer-card">
+            <div class="offer-body">
+              <h2 class="offer-label">The Course</h2>
+              <p class="offer-desc">Eucalypt Identification &amp; Ecology — an immersive 4-day course with Vicky Shukuroglou &amp; Karl Just. Classroom sessions and field trips across Melbourne's landscapes.</p>
+            </div>
+            <div class="offer-image">
+              <img
+                src="/images/course/course-flyer-cover.jpg"
+                alt="Eucalypt Identification & Ecology — Immersive 4-day course with Vicky Shukuroglou and Karl Just"
+                loading="eager"
+              />
+            </div>
+            <span class="offer-cta">Course info and bookings &rarr;</span>
+          </a>
+        </div>
 
-      </div>
-
-      <div class="hero-cta">
-        <BuyButton text="Buy the Book — $30 AUD" href="https://buy.stripe.com/00w3cn2Wi7Yq7uf3pXgjC01" external={true} />
-        <p class="hero-secure">Secure checkout via Stripe. No account needed.</p>
       </div>
     </div>
   </section>
@@ -174,18 +177,39 @@ const siteSchema = {
     }
   }
 
+  .offer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: start;
+    gap: var(--space-md);
+  }
+
   .offer-card {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: inherit;
     transition: transform 150ms ease;
-    align-self: start;
     text-align: center;
+    width: 100%;
   }
 
   .offer-card:hover {
     transform: translateY(-3px);
+  }
+
+  .offer-buy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .offer-buy .hero-secure {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin: 0;
   }
 
   .offer-body {
@@ -221,22 +245,6 @@ const siteSchema = {
   .offer-cta {
     color: var(--color-cta);
     font-weight: 600;
-  }
-
-  /* CTA row */
-  .hero-cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-secure {
-    width: 100%;
-    font-size: 0.8rem;
-    color: var(--color-text-secondary);
-    margin: 0;
   }
 
   /* Walks band */
