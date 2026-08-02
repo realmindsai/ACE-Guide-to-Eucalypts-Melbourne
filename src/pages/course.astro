@@ -1,0 +1,250 @@
+---
+// src/pages/course.astro
+import Base from '../layouts/Base.astro';
+import AcknowledgmentOfCountry from '../components/AcknowledgmentOfCountry.astro';
+
+const breadcrumbs = [{ name: 'Course', href: '/course/' }];
+
+const courseSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Eucalypt Identification & Ecology',
+  description:
+    "An immersive 4-day course exploring Melbourne's eucalypts and diverse landscapes through interactive classroom sessions and hands-on field experience. With Vicky Shukuroglou and Karl Just.",
+  provider: {
+    '@type': 'Organization',
+    name: 'ACE Guide to Eucalypts Melbourne',
+    url: 'https://eucalyptsmelbourne.au/',
+  },
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'Onsite',
+    location: { '@type': 'Place', name: 'Melbourne, Australia' },
+    startDate: '2026-10-03',
+    endDate: '2026-11-28',
+  },
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'AUD',
+    price: '900',
+  },
+};
+
+const pillars = [
+  { verb: 'Explore', body: 'diverse environments and hands-on learning' },
+  { verb: 'Discover', body: 'ecology, evolution and relationships within ecosystems' },
+  { verb: 'Identify', body: "Melbourne's eucalypts using practical ID skills" },
+  { verb: 'Understand', body: 'geology, soils, climate and landscape' },
+];
+---
+
+<Base
+  title="Eucalypt Identification & Ecology Course — with Vicky Shukuroglou & Karl Just"
+  description="An immersive 4-day course exploring Melbourne's eucalypts and diverse landscapes. Interactive classroom sessions and guided field experience across four Saturdays in October and November 2026. With Vicky Shukuroglou and Karl Just."
+  schemaJson={courseSchema}
+  breadcrumbs={breadcrumbs}
+>
+
+  <!-- Top image (flyer header) -->
+  <section class="course-header">
+    <div class="content-width">
+      <img
+        src="/images/course/course-flyer-header.jpg"
+        alt="Eucalypt Identification & Ecology — Immersive 4-day course. Tall forest with tree ferns."
+        class="course-header-image"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </section>
+
+  <!-- Tagline -->
+  <section class="section course-tagline">
+    <div class="content-width">
+      <p class="tagline">
+        Interactive classroom sessions and guided field experience across Melbourne's
+        diverse landscapes — suitable for all levels of knowledge.
+      </p>
+      <p class="course-meta">
+        With <strong>Vicky Shukuroglou</strong> &amp; <strong>Karl Just</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Four pillars — leaf motif from the flyer -->
+  <section class="section pillars-section">
+    <div class="wide-width">
+      <div class="pillars-grid">
+        {pillars.map(({ verb, body }) => (
+          <div class="pillar">
+            <div class="leaf" aria-hidden="true">
+              <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10,45 Q30,10 60,15 Q95,20 110,45 Q95,70 60,75 Q30,80 10,45 Z"
+                  fill="currentColor"
+                  opacity="0.28"
+                />
+                <path
+                  d="M10,45 Q60,42 110,45"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  fill="none"
+                  opacity="0.55"
+                />
+              </svg>
+            </div>
+            <h2 class="pillar-verb">{verb}</h2>
+            <p class="pillar-body">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- More info + booking CTA -->
+  <section class="section course-cta">
+    <div class="content-width">
+      <h2>Full course information</h2>
+      <p>
+        Session dates, field trip locations, learning outcomes, cost, group size and
+        facilitator biographies are all in the course information document.
+      </p>
+      <p class="cta-buttons">
+        <a class="buy-button" href="/downloads/eucalypt-course-info-2026.pdf" target="_blank" rel="noopener">
+          Download the full course info (PDF)
+        </a>
+        <a class="buy-button buy-button-secondary" href="mailto:info@eucalyptsmelbourne.au?subject=Eucalypt%20Identification%20%26%20Ecology%20Course%20enquiry">
+          Enquire and register
+        </a>
+      </p>
+      <p class="cta-note">Limited places · Enquiries and registrations to info@eucalyptsmelbourne.au</p>
+    </div>
+  </section>
+
+  <AcknowledgmentOfCountry />
+</Base>
+
+<style>
+  /* Header image */
+  .course-header {
+    padding-block: var(--space-md);
+  }
+
+  .course-header-image {
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    display: block;
+    margin-inline: auto;
+  }
+
+  /* Tagline */
+  .course-tagline {
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-sm);
+    text-align: center;
+  }
+
+  .tagline {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  .course-meta {
+    margin-top: var(--space-sm);
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+  }
+
+  /* Pillars — leaf motif */
+  .pillars-section {
+    padding-block: var(--space-lg);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 860px) {
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 460px) {
+    .pillars-grid { grid-template-columns: 1fr; }
+  }
+
+  .pillar {
+    position: relative;
+    padding: var(--space-md) var(--space-sm);
+    text-align: center;
+    color: var(--color-green, #3a5a3a);
+  }
+
+  .leaf {
+    width: 120px;
+    height: 90px;
+    margin-inline: auto;
+    color: var(--color-green, #3a5a3a);
+    margin-bottom: var(--space-xs);
+  }
+
+  .leaf svg { display: block; width: 100%; height: 100%; }
+
+  .pillar-verb {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-green, #3a5a3a);
+    margin-bottom: var(--space-xs);
+  }
+
+  .pillar-body {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 22ch;
+    margin-inline: auto;
+  }
+
+  /* CTA */
+  .course-cta {
+    background-color: #f0ebe4;
+    padding-block: var(--space-xl);
+    text-align: center;
+  }
+
+  .course-cta h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .cta-buttons {
+    margin-top: var(--space-md);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+  }
+
+  .buy-button-secondary {
+    background-color: transparent;
+    color: var(--color-cta);
+    border: 1px solid var(--color-cta);
+  }
+
+  .buy-button-secondary:hover {
+    background-color: var(--color-cta);
+    color: var(--color-bg);
+  }
+
+  .cta-note {
+    margin-top: var(--space-md);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+  }
+</style>
