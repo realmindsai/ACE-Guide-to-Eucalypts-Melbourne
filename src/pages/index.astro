@@ -32,16 +32,16 @@ const siteSchema = {
   <!-- Hero: two-up — Book on the left, Course on the right -->
   <section class="hero">
     <div class="hero-inner wide-width">
-      <div class="hero-heading">
-        <p class="hero-eyebrow">ACE GUIDE TO EUCALYPTS MELBOURNE</p>
-        <h1>Know the trees<br/>around you</h1>
-        <p class="hero-subtitle">A field guide and an immersive course.</p>
-      </div>
+      <h1 class="page-title">Know the trees around you</h1>
 
       <div class="offer-grid">
 
         <!-- The Book -->
         <a href={url('/melbourne/')} class="offer-card">
+          <div class="offer-body">
+            <h2 class="offer-label">The Book</h2>
+            <p class="offer-desc">A pocket field guide to Melbourne's eucalypt species — identified by bark, fruit, bud, and leaf, photographed in intimate detail.</p>
+          </div>
           <div class="offer-image">
             <Image
               src={melbourneCover}
@@ -51,27 +51,23 @@ const siteSchema = {
               fetchpriority="high"
             />
           </div>
-          <div class="offer-body">
-            <h2 class="offer-label">The Book</h2>
-            <p class="offer-desc">A pocket field guide to Melbourne's eucalypt species — identified by bark, fruit, bud, and leaf, photographed in intimate detail.</p>
-            <span class="offer-cta">Read more &rarr;</span>
-          </div>
+          <span class="offer-cta">Read more &rarr;</span>
         </a>
 
         <!-- The Course -->
         <a href={url('/course/')} class="offer-card">
-          <div class="offer-image offer-image-course">
+          <div class="offer-body">
+            <h2 class="offer-label">The Course</h2>
+            <p class="offer-desc">Eucalypt Identification &amp; Ecology — an immersive 4-day course with Vicky Shukuroglou &amp; Karl Just. Classroom sessions and field trips across Melbourne's landscapes.</p>
+          </div>
+          <div class="offer-image">
             <img
               src="/images/course/course-flyer-cover.jpg"
               alt="Eucalypt Identification & Ecology — Immersive 4-day course with Vicky Shukuroglou and Karl Just"
               loading="eager"
             />
           </div>
-          <div class="offer-body">
-            <h2 class="offer-label">The Course</h2>
-            <p class="offer-desc">Eucalypt Identification &amp; Ecology — an immersive 4-day course with Vicky Shukuroglou &amp; Karl Just. Classroom sessions and field trips across Melbourne's landscapes.</p>
-            <span class="offer-cta">Course info and bookings &rarr;</span>
-          </div>
+          <span class="offer-cta">Course info and bookings &rarr;</span>
         </a>
 
       </div>
@@ -143,40 +139,23 @@ const siteSchema = {
 </Base>
 
 <style>
-  /* Hero */
+  /* Hero — compact, so the two offer cards sit high on the page */
   .hero {
-    padding-block: var(--space-lg);
+    padding-block: var(--space-sm);
   }
 
   .hero-inner {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    align-items: center;
+    gap: var(--space-md);
+    align-items: start;
     text-align: center;
   }
 
-  .hero-eyebrow {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-olive);
-    margin-bottom: var(--space-xs);
-  }
-
-  .hero-heading h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+  .page-title {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
     line-height: 1.15;
-    margin-bottom: var(--space-sm);
-  }
-
-  .hero-subtitle {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
-    max-width: 52ch;
-    margin-inline: auto;
+    margin: 0;
   }
 
   /* Offer grid — The Book + The Course side by side */
@@ -201,27 +180,16 @@ const siteSchema = {
     text-decoration: none;
     color: inherit;
     transition: transform 150ms ease;
+    align-self: start;
+    text-align: center;
   }
 
   .offer-card:hover {
     transform: translateY(-3px);
   }
 
-  .offer-image {
-    overflow: hidden;
+  .offer-body {
     margin-bottom: var(--space-sm);
-  }
-
-  .offer-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    box-shadow: 0 6px 28px rgba(44, 44, 42, 0.18);
-  }
-
-  /* Cards align to top so the book (shorter) and flyer (taller) sit tidily */
-  .offer-card {
-    align-self: start;
   }
 
   .offer-label {
@@ -235,7 +203,19 @@ const siteSchema = {
     color: var(--color-text-secondary);
     line-height: 1.55;
     font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .offer-image {
+    overflow: hidden;
     margin-bottom: var(--space-sm);
+  }
+
+  .offer-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 6px 28px rgba(44, 44, 42, 0.18);
   }
 
   .offer-cta {
